@@ -1,0 +1,62 @@
+<div class="main-content">
+  <div class="container-fluid">
+    <div class="row">
+      <div class="col-md-12 mr-auto ml-auto">
+        <div class="card card-wizard" data-color="uft" id="wizardProfile">
+          <div class="card-header text-center">
+            <h3 class="card-title">
+              Fomulario
+            </h3>
+            <h5 class="card-description">This information will let us know more about you.</h5>
+          </div>
+          <div class="card-body">
+            <table class="table table-sm table-inverse table-responsive-md">
+              <thead class="thead-inverse">
+                <tr>
+                  <th>#</th>
+                  <th>Nombre</th>
+                  <th>Precio</th>
+                  <th></th>
+                  <th></th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr *ngFor="let producto of listadoProductos; let index = index">
+                  <td>
+                    {{index + 1 + pageSize * page - pageSize }}
+                  </td>
+                  <td> {{producto.descripcion}} </td>
+                  <td> {{producto.precio | currency: 'CLP'}}</td>
+                  <td>
+                    <span *ngIf="producto.activo" class="badge badge-success" style="margin-bottom: 1px;">Activo</span>
+                    <span *ngIf="!producto.activo" class="badge badge-danger"
+                      style="margin-bottom: 1px;">Inactivo</span>
+                  </td>
+                  <td>
+                    <div class="btn-group btn-group-xs my-0" role="group" aria-label="">
+                      <button type="button" class="btn btn-primary btn-sm">Editar</button>
+                      <button type="button" [ngClass]="{'btn-danger': producto.activo, 'btn-success': !producto.activo}"
+                        (click)="changeState(producto.id)" class="btn  btn-sm"
+                        matTooltip="{{producto.activo?'Desactivar producto':'Activar producto'}}"
+                        matTooltipClass="multiline-tooltip" mat-raised-button matTooltipPosition="above">
+                        <i *ngIf="producto.activo" class="material-icons">block</i>
+                        <i *ngIf="!producto.activo" class="material-icons">check_circle_outline</i>
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+            <ngb-pagination *ngIf="listadoProductos.length < totalElements" [(page)]="page " [pageSize]="pageSize"
+              (pageChange)="listarProductos() " [collectionSize]="totalElements" [maxSize]="5 " [rotate]="true"
+              [boundaryLinks]="true ">
+            </ngb-pagination>
+          </div>
+          <div class="card-footer">
+            <div class="clearfix"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
