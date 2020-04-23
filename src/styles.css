@@ -367,6 +367,7 @@ span.cerrar:hover {
 }
 .table > thead > tr > th {
   font-size: 0.875rem !important;
+  font-weight: bolder;
 }
 
 
@@ -395,6 +396,11 @@ span.cerrar:hover {
 
 .multiline-tooltip{
   white-space: pre-line;
+}
+
+.multiline-tooltip.privilegios {
+  white-space: pre-line;
+  text-align: left !important;
 }
 
 .mat-option{

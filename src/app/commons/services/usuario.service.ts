@@ -7,7 +7,7 @@ import { ResultadoProc } from '../interfaces/resultado-proc.interface';
 import { UsuarioModel } from '../models/usuario.model';
 
 @Injectable({
-  providedIn: 'root'
+	providedIn: 'root'
 })
 export class UsuarioService {
 
@@ -20,7 +20,7 @@ export class UsuarioService {
 	 * @param searchPagination (En el seek se envía el texto ingresado en el buscador)
 	 * @return Una página de usuarios coincidentes con los filtros
 	 */
-	public findAllPaginatedWithFilters(searchPagination: SearchPagination<String>): Observable<ResultadoProc<IPaginacion<UsuarioModel>>>{
+	public findAllPaginatedWithFilters(searchPagination: SearchPagination<String>): Observable<ResultadoProc<IPaginacion<UsuarioModel>>> {
 		return this.http.post<ResultadoProc<IPaginacion<UsuarioModel>>>(`${this.urlBase}/page-with-filters`, searchPagination);
 	}
 
@@ -30,7 +30,7 @@ export class UsuarioService {
 	 * @param usuario (Entidad UsuarioModel)
 	 * @return UsuarioModel guardado/actualizado
 	 */
-	public save(usuario: UsuarioModel): Observable<ResultadoProc<UsuarioModel>>{
+	public save(usuario: UsuarioModel): Observable<ResultadoProc<UsuarioModel>> {
 		return this.http.post<ResultadoProc<UsuarioModel>>(`${this.urlBase}`, usuario);
 	}
 
@@ -46,8 +46,8 @@ export class UsuarioService {
 	 * @return ResultadoProc&lt;UsuarioModel&gt; El usuario al que le fue cambiado el
 	 *         estado
 	 */
-	public changeState(usuarioId: number): Observable<ResultadoProc<UsuarioModel>>{
-		return this.http.get<ResultadoProc<UsuarioModel>>(`${this.urlBase}/change-state/${usuarioId}` );
+	public changeState(usuarioId: number): Observable<ResultadoProc<UsuarioModel>> {
+		return this.http.get<ResultadoProc<UsuarioModel>>(`${this.urlBase}/change-state/${usuarioId}`);
 	}
 
 
@@ -57,7 +57,7 @@ export class UsuarioService {
 	 * @param usuarioId (Identificador del usuario)
 	 * @return UsuarioModel con el ID dado
 	 */
-	public findById(usuarioId: number): Observable<ResultadoProc<UsuarioModel>>{
+	public findById(usuarioId: number): Observable<ResultadoProc<UsuarioModel>> {
 		return this.http.get<ResultadoProc<UsuarioModel>>(`${this.urlBase}/${usuarioId}`);
 	}
 }

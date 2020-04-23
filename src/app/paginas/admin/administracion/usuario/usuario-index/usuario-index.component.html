@@ -29,8 +29,11 @@
                   <td> {{usuario.nombreCompleto}} </td>
                   <td> {{usuario.email}} </td>
                   <td>
-                    <div *ngFor="let usuarioRol of usuario.roles">
-                      {{usuarioRol.rol.nombre}}
+                    <div *ngFor="let rol of usuario.roles">
+                      <span matTooltip="{{ rol.privilegiosString }}" matTooltipClass="multiline-tooltip privilegios"
+                        mat-raised-button matTooltipPosition="above">
+                        {{rol.nombre}}
+                      </span>
                     </div>
                   </td>
                   <td>
@@ -39,7 +42,7 @@
                   </td>
                   <td>
                     <div class="btn-group btn-group-xs my-0" role="group" aria-label="">
-                      <button type="button" class="btn btn-primary btn-sm">Editar</button>
+                      <button type="button" class="btn btn-primary btn-sm" (click)="editar(usuario.id)">Editar</button>
                       <button type="button" [ngClass]="{'btn-danger': usuario.activo, 'btn-success': !usuario.activo}"
                         (click)="changeState(usuario.id)" class="btn  btn-sm"
                         matTooltip="{{usuario.activo?'Desactivar usuario':'Activar usuario'}}"

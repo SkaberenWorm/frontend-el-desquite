@@ -3,6 +3,10 @@ import { UsuarioService } from 'src/app/commons/services/usuario.service';
 import { UtilAlert } from 'src/app/commons/util/util-alert';
 import { UsuarioModel } from 'src/app/commons/models/usuario.model';
 import { SearchPagination } from 'src/app/commons/interfaces/search-pagination';
+import { Router } from '@angular/router';
+import { Store } from '@ngrx/store';
+import { AppState } from 'src/app/store/app.reducer';
+import { listarUsuario } from 'src/app/store/actions/usuario.actions';
 
 @Component({
   selector: 'app-usuario-index',
@@ -23,27 +27,37 @@ export class UsuarioIndexComponent implements OnInit {
 
   constructor(
     private usuarioService: UsuarioService,
-    private alert: UtilAlert
+    private alert: UtilAlert,
+    private router: Router,
+    private store: Store<AppState>,
   ) { }
 
   ngOnInit() {
-    this.listarUsuarios();
-  }
 
-  listarUsuarios() {
     this.searchPagination = {
       page: this.page,
       records: this.pageSize,
       seek: this.buscador,
     }
-    this.usuarioService.findAllPaginatedWithFilters(this.searchPagination).subscribe(result => {
-      if (!result.error) {
-        this.listadoUsuarios = result.resultado.content;
-        this.totalElements = result.resultado.totalElements;
-      } else {
-        this.alert.errorSwal(result.mensaje);
+
+    this.listarUsuarios();
+
+    this.store.select('usuario').subscribe(state => {
+
+      this.searchPagination = state.searchPagination;
+
+      if (state.listadoUsuarios != null) {
+        this.listadoUsuarios = state.listadoUsuarios.content;
+        this.totalElements = state.listadoUsuarios.totalElements;
       }
+
     });
+
+  }
+
+  listarUsuarios() {
+
+    this.store.dispatch(listarUsuario({ searchPagination: this.searchPagination }));
   }
 
   changeState(usuarioId: number) {
@@ -56,5 +70,11 @@ export class UsuarioIndexComponent implements OnInit {
       }
     });
   }
+
+  editar(usuarioId: number) {
+    this.router.navigate(['/admin/administracion/usuario', usuarioId, 'edit']);
+  }
+
+
 
 }

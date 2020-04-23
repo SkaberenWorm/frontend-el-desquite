@@ -119,10 +119,10 @@ export class AuthenticationService {
   public esRol(id_role: string): boolean {
     this.cargarStorage();
     let payload = this.obtenerDatosToken(this.token);
-    if (payload !== null && payload.authorities !== undefined) {
+    if (payload !== null && payload.roles !== undefined) {
       // tslint:disable-next-line: prefer-for-of
-      for (let index = 0; index < payload.authorities.length; index++) {
-        if (payload.authorities[index] === id_role) {
+      for (let index = 0; index < payload.roles.length; index++) {
+        if (payload.roles[index] === id_role) {
           return true;
         }
       }
@@ -151,6 +151,6 @@ export class AuthenticationService {
   }
 
   public obtenerRole() {
-    return this.obtenerDatosToken(this.token).authorities;
+    return this.obtenerDatosToken(this.token).roles;
   }
 }

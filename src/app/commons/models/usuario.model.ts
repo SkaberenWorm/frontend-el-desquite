@@ -1,5 +1,5 @@
 
-import { UsuarioRolModel } from "./usuario-rol.model";
+import { RolModel } from "./rol.model";
 
 export class UsuarioModel {
 
@@ -8,10 +8,9 @@ export class UsuarioModel {
 	public apellidos = '';
 	public email = '';
 	public password = '';
-	public user = '';
 	public activo = false;
   public nombreCompleto = '';
-  public roles: Array<UsuarioRolModel> = [];
+  public roles: Array<RolModel> = [];
   
   constructor(fields?: {
     id?: number;
@@ -19,10 +18,9 @@ export class UsuarioModel {
     apellidos?: string;
     email?: string;
     password?: string;
-    user?: string;
     activo?: boolean;
     nombreCompleto?: string;
-    roles?: Array<UsuarioRolModel>;
+    roles?: Array<RolModel>;
   }) {
     if (fields) {
       Object.assign(this, fields);

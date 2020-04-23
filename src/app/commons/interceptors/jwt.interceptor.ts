@@ -35,7 +35,7 @@ export class JwtInterceptor implements HttpInterceptor {
           if (err.status === 403) {
             swal.fire({
               title: 'Error',
-              text: 'No tienes Permisos para ejecutar esta operación',
+              text: 'No tienes Permisos para ejecutar esta acción',
               type: 'error',
               allowOutsideClick: false,
               allowEscapeKey: false

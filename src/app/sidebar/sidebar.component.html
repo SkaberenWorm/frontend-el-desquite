@@ -1,5 +1,5 @@
 <div class="sidebar-wrapper">
-  <div class="logo py-3">
+  <!-- <div class="logo py-3">
     <a class="simple-text logo-mini ">
       <div class="logo-img">
         <img class="mt-2" src="./assets/img/icon-sir/icon-192x192.png" />
@@ -21,9 +21,16 @@
         </span>
       </a>
     </div>
+  </div> -->
+  <div class="row justify-content-center m-2">
+    <div class="col-sm-12 text-center pb-3">
+      <h1>LOGO</h1>
+    </div>
+    <div class="col-sm-3 text-white text-center">FOTO</div>
+    <div class="col-sm-9 text-white">{{ nombreUsuario }}</div>
   </div>
 
-  <ul class="nav">
+  <ul class="nav pt-2">
     <li routerLinkActive="active" [routerLinkActiveOptions]="{ exact: true }" *ngFor="let menuitem of menuItems"
       class="nav-item">
       <!--If is a single link-->

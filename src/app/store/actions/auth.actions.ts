@@ -1,5 +1,4 @@
 import { Action } from '@ngrx/store';
-import { RespuestaLogin } from 'src/app/commons/interfaces/respuesta-login-interface';
 
 
 export const AUTENTICAR = '[AUTENTICAR]';
@@ -8,7 +7,6 @@ export const AUTENTICAR_FAIL = '[AUTENTICAR FAIL]';
 export const SET_AUTENTICADO = '[SET AUTENTICADO]';
 export const LOGOUT = '[LOGOUT]';
 export const LOGOUT_SUCCESS = '[LOGOUT SUCCESS]';
-
 
 export class Autenticar implements Action {
     readonly type = AUTENTICAR;
