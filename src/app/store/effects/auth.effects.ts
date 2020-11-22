@@ -7,14 +7,14 @@ import { AuthenticationService } from 'src/app/commons/services/authentication.s
 import { LoginService } from 'src/app/paginas/login/login.service';
 @Injectable()
 export class AuthEffects {
-  constructor(private actions$: Actions, private loginService: LoginService, private authenticationService: AuthenticationService) {}
+  constructor(private actions$: Actions, private loginService: LoginService, private authenticationService: AuthenticationService) { }
 
   @Effect()
   authenticar$ = this.actions$.pipe(
     ofType(appActions.AUTENTICAR),
     switchMap(data => {
       const identificacion: { usuario: string; clave: string; tipo: string } = data['identificacion'];
-      return this.loginService.login(identificacion.usuario, identificacion.clave, identificacion.tipo).pipe(
+      return this.loginService.login(identificacion.usuario, identificacion.clave).pipe(
         map(resul => {
           if (resul['error']) {
             return new appActions.AutenticarFail(resul);

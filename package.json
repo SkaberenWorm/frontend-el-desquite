@@ -71,6 +71,7 @@
     "popper.js": "1.15.0",
     "rxjs": "6.5.2",
     "rxjs-compat": "6.5.2",
+    "sha.js": "^2.4.9",
     "sweetalert2": "^8.15.2",
     "twitter-bootstrap-wizard": "1.2.0",
     "uglify-js": "3.6.0",

@@ -19,6 +19,8 @@ export class UsuarioIndexComponent implements OnInit {
 
   private searchPagination: SearchPagination<string>;
 
+
+
   public page = 1;
   public pageSize = 10;
   public totalElements = 0;

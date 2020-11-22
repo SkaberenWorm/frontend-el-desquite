@@ -10,7 +10,7 @@ export const LOGOUT_SUCCESS = '[LOGOUT SUCCESS]';
 
 export class Autenticar implements Action {
     readonly type = AUTENTICAR;
-    constructor(public identificacion: { usuario: string, clave: string, tipo: string }) { }
+    constructor(public identificacion: { usuario: string, clave: string }) { }
 }
 export class AutenticarSuccess implements Action {
     readonly type = AUTENTICAR_SUCCESS;

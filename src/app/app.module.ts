@@ -1,62 +1,28 @@
-import { NgModule, LOCALE_ID } from '@angular/core';
+import { CommonModule, registerLocaleData } from '@angular/common';
+import { HttpClientModule } from '@angular/common/http';
+import localeES from '@angular/common/locales/es-CL';
+import { LOCALE_ID, NgModule } from '@angular/core';
+import { FormsModule } from '@angular/forms';
+import { MatAutocompleteModule, MatNativeDateModule } from '@angular/material';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { RouterModule } from '@angular/router';
-import { FormsModule } from '@angular/forms';
-import { CommonModule, registerLocaleData } from '@angular/common';
-import {
-  MatAutocompleteModule,
-  MatButtonModule,
-  MatButtonToggleModule,
-  MatCardModule,
-  MatCheckboxModule,
-  MatChipsModule,
-  MatDialogModule,
-  MatExpansionModule,
-  MatGridListModule,
-  MatIconModule,
-  MatInputModule,
-  MatListModule,
-  MatMenuModule,
-  MatNativeDateModule,
-  MatPaginatorModule,
-  MatProgressBarModule,
-  MatProgressSpinnerModule,
-  MatRadioModule,
-  MatRippleModule,
-  MatSelectModule,
-  MatSidenavModule,
-  MatSliderModule,
-  MatSlideToggleModule,
-  MatSnackBarModule,
-  MatSortModule,
-  MatTableModule,
-  MatTabsModule,
-  MatToolbarModule,
-  MatTooltipModule,
-  MatStepperModule
-} from '@angular/material';
-import { MatDatepickerModule } from '@angular/material/datepicker';
+import { EffectsModule } from '@ngrx/effects';
+import { StoreModule } from '@ngrx/store';
+import { StoreDevtoolsModule } from '@ngrx/store-devtools';
+import { BlockUIModule } from 'ng-block-ui';
+import { environment } from 'src/environments/environment';
 
 import { AppComponent } from './app.component';
-
-import { SidebarModule } from './sidebar/sidebar.module';
-import { FooterModule } from './shared/footer/footer.module';
-import { NavbarModule } from './shared/navbar/navbar.module';
-import { FixedpluginModule } from './shared/fixedplugin/fixedplugin.module';
+import { AppRoutes } from './app.routing';
+import { CommonsServiceModule } from './commons/commons-service.module';
 import { AdminLayoutComponent } from './layouts/admin/admin-layout.component';
 import { AuthLayoutComponent } from './layouts/auth/auth-layout.component';
-
-import { AppRoutes } from './app.routing';
-import { HttpClientModule } from '@angular/common/http';
-import { StoreModule } from '@ngrx/store';
+import { FixedpluginModule } from './shared/fixedplugin/fixedplugin.module';
+import { FooterModule } from './shared/footer/footer.module';
+import { NavbarModule } from './shared/navbar/navbar.module';
+import { SidebarModule } from './sidebar/sidebar.module';
 import { appReducers } from './store/app.reducer';
-import { StoreDevtoolsModule } from '@ngrx/store-devtools';
-import { environment } from 'src/environments/environment';
-import { BlockUIModule } from 'ng-block-ui';
-import { CommonsServiceModule } from './commons/commons-service.module';
-import { EffectsModule } from '@ngrx/effects';
 import { appEffect } from './store/effects';
-import localeES from '@angular/common/locales/es-CL';
 
 registerLocaleData(localeES, 'es-CL');
 
@@ -65,7 +31,7 @@ registerLocaleData(localeES, 'es-CL');
     MatAutocompleteModule,
   ],
 })
-export class MaterialModule {}
+export class MaterialModule { }
 
 @NgModule({
   imports: [
@@ -100,4 +66,4 @@ export class MaterialModule {}
   declarations: [AppComponent, AdminLayoutComponent, AuthLayoutComponent],
   bootstrap: [AppComponent]
 })
-export class AppModule {}
+export class AppModule { }

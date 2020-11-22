@@ -58,7 +58,7 @@ export class LoginIndexComponent implements OnInit, OnDestroy {
           //   type: 'error'
           // });
           this.authenticationService.logout();
-        } 
+        }
       }
       if (state.error != null) {
         if (state.error.status === 400) {
@@ -86,7 +86,7 @@ export class LoginIndexComponent implements OnInit, OnDestroy {
     body.classList.add('login-page');
     body.classList.add('off-canvas-sidebar');
     const card = document.getElementsByClassName('card')[0];
-    setTimeout(function() {
+    setTimeout(function () {
       // after 1000 ms we add the class animated to the login/register card
       card.classList.remove('card-hidden');
     }, 700);
@@ -112,12 +112,10 @@ export class LoginIndexComponent implements OnInit, OnDestroy {
     if (this.formLogin.valid) {
       const usuario = this.formLogin.controls.usuario.value;
       const clave = this.formLogin.controls.clave.value;
-      const tipo = '';
 
       const identificacion = {
         usuario: usuario,
         clave: clave,
-        tipo: tipo
       };
       this.store.dispatch(new Autenticar(identificacion));
     }
