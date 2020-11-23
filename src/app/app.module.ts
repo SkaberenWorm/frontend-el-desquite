@@ -30,7 +30,6 @@ import { appEffect } from './store/effects';
     AppComponent,
     NotFoundComponent,
   ],
-
   imports: [
     BrowserModule,
     FormsModule,

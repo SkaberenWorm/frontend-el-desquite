@@ -10,27 +10,27 @@
       "prefix": "app",
       "schematics": {
         "@schematics/angular:component": {
-          "styleext": "scss",
           "inlineStyle": true,
-          "spec": false
+          "style": "scss",
+          "skipTests": true
         },
         "@schematics/angular:class": {
-          "spec": false
+          "skipTests": true
         },
         "@schematics/angular:directive": {
-          "spec": false
+          "skipTests": true
         },
         "@schematics/angular:guard": {
-          "spec": false
+          "skipTests": true
         },
         "@schematics/angular:module": {
-          "spec": false
+          "skipTests": true
         },
         "@schematics/angular:pipe": {
-          "spec": false
+          "skipTests": true
         },
         "@schematics/angular:service": {
-          "spec": false
+          "skipTests": true
         }
       },
       "architect": {
@@ -53,27 +53,27 @@
               {
                 "input": "src/vendor/styles/rtl/appwork-material.scss",
                 "bundleName": "vendor/styles/appwork-material",
-                "lazy": true
+                "inject": false
               },
               {
                 "input": "src/vendor/styles/rtl/bootstrap-material.scss",
                 "bundleName": "vendor/styles/bootstrap-material",
-                "lazy": true
+                "inject": false
               },
               {
                 "input": "src/vendor/styles/rtl/colors-material.scss",
                 "bundleName": "vendor/styles/colors-material",
-                "lazy": true
+                "inject": false
               },
               {
                 "input": "src/vendor/styles/rtl/uikit.scss",
                 "bundleName": "vendor/styles/uikit",
-                "lazy": true
+                "inject": false
               },
               {
                 "input": "src/vendor/styles/rtl/theme-corporate-material.scss",
                 "bundleName": "vendor/styles/theme-corporate-material",
-                "lazy": true
+                "inject": false
               }
             ],
             "scripts": []
@@ -93,7 +93,6 @@
               "optimization": true,
               "outputHashing": "all",
               "sourceMap": false,
-              "extractCss": true,
               "namedChunks": false,
               "buildOptimizer": true,
               "extractLicenses": true,
@@ -114,7 +113,6 @@
               "ngswConfigPath": "ngsw-config.json"
             },
             "serve": {
-              "extractCss": true,
               "namedChunks": true,
               "vendorChunk": true,
               "commonChunk": true,
