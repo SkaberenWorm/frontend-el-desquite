@@ -1,8 +1,5 @@
 import { Component, OnInit } from '@angular/core';
-import { ProductoModel, ProductoFilter } from 'src/app/commons/models/producto.model';
-import { SearchPagination } from 'src/app/commons/interfaces/search-pagination';
-import { ProductoService } from 'src/app/commons/services/producto.service';
-import { UtilAlert } from 'src/app/commons/util/util-alert';
+import { ProductoModel } from 'src/app/commons/models/producto.model';
 
 @Component({
   selector: 'app-producto-index',
@@ -13,8 +10,6 @@ export class ProductoIndexComponent implements OnInit {
 
   public listadoProductos = new Array<ProductoModel>();
 
-  private searchPagination: SearchPagination<ProductoFilter>;
-  private productoFilter: ProductoFilter;
 
   public page = 1;
   public pageSize = 10;
@@ -23,8 +18,6 @@ export class ProductoIndexComponent implements OnInit {
   public buscador = '';
 
   constructor(
-    private productoService: ProductoService,
-    private alert: UtilAlert,
   ) { }
 
   ngOnInit() {
@@ -32,25 +25,31 @@ export class ProductoIndexComponent implements OnInit {
   }
 
   listarProductos() {
-    this.productoFilter = {
-      query: this.buscador,
-      categoriasId: null
-    }
 
-    this.searchPagination = {
-      page: this.page,
-      records: this.pageSize,
-      seek: this.productoFilter,
-    }
+  }
 
-    this.productoService.findAllPaginatedWithFilters(this.searchPagination).subscribe(result => {
-      if (!result.error) {
-        this.listadoProductos = result.resultado.content;
-        this.totalElements = result.resultado.totalElements;
-      } else {
-        this.alert.errorSwal(result.mensaje);
-      }
-    });
+
+  nuevo() {
+
+  }
+
+  sortData(sort: any) {
+    // this.order = sort.active.toString().trim();
+    // this.direction = sort.direction.toString().trim();
+    // if (sort.direction.toString().trim() == '') {
+    //   this.order = 'id';
+    //   this.direction = 'desc';
+    // }
+    // this.listarProductos();
+  }
+
+  changePageSize(cantidadRegistros: number) {
+    if (cantidadRegistros == 0) {
+      cantidadRegistros = this.totalElements;
+    }
+    this.pageSize = cantidadRegistros;
+    this.page = 1;
+    this.listarProductos();
   }
 
 }

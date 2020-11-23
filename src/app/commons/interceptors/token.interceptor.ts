@@ -1,20 +1,25 @@
-import { Injectable, Injector } from '@angular/core';
-import {
-  HttpRequest,
-  HttpHandler,
-  HttpEvent,
-  HttpInterceptor
-} from '@angular/common/http';
-
+import { HttpEvent, HttpHandler, HttpInterceptor, HttpRequest } from '@angular/common/http';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+
 import { AuthenticationService } from '../services/authentication.service';
+
+
 
 @Injectable()
 export class TokenInterceptor implements HttpInterceptor {
 
-  constructor(public auth: AuthenticationService) {}
+  constructor(public auth: AuthenticationService) { }
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
+
+    if (!(request.url.indexOf('create-password') === -1)) {
+      return next.handle(request);
+    }
+
+    if (!(request.url.indexOf('api/informacion') === -1)) {
+      return next.handle(request);
+    }
 
     if (request.url.indexOf('reset-password') === -1) {
       if (request.headers.get('Authorization') === null) {
@@ -24,7 +29,8 @@ export class TokenInterceptor implements HttpInterceptor {
         }
         const authReq = request.clone({
           setHeaders: {
-            Authorization: `Bearer ${this.auth.token}`
+            'Content-Type': 'application/json',
+            'Authorization': `Bearer ${this.auth.token}`,
           }
         });
         return next.handle(authReq);

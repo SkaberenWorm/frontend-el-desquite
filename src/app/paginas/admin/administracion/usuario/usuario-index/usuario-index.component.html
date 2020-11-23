@@ -1,70 +1,91 @@
-<div class="main-content">
-  <div class="container-fluid">
+<div class="card ">
+  <div class="card-header">
     <div class="row">
-      <div class="col-md-12 mr-auto ml-auto">
-        <div class="card card-wizard" data-color="uft" id="wizardProfile">
-          <div class="card-header text-center">
-            <h3 class="card-title">
-              Fomulario
-            </h3>
-            <h5 class="card-description">This information will let us know more about you.</h5>
-          </div>
-          <div class="card-body">
-            <table class="table table-sm table-inverse table-responsive-md">
-              <thead class="thead-inverse">
-                <tr>
-                  <th>#</th>
-                  <th>Nombre</th>
-                  <th>Email</th>
-                  <th>Rol(es)</th>
-                  <th></th>
-                  <th></th>
-                </tr>
-              </thead>
-              <tbody>
-                <tr *ngFor="let usuario of listadoUsuarios; let index = index">
-                  <td>
-                    {{index + 1 + pageSize * page - pageSize }}
-                  </td>
-                  <td> {{usuario.nombreCompleto}} </td>
-                  <td> {{usuario.email}} </td>
-                  <td>
-                    <div *ngFor="let rol of usuario.roles">
-                      <span matTooltip="{{ rol.privilegiosString }}" matTooltipClass="multiline-tooltip privilegios"
-                        mat-raised-button matTooltipPosition="above">
-                        {{rol.nombre}}
-                      </span>
-                    </div>
-                  </td>
-                  <td>
-                    <span *ngIf="usuario.activo" class="badge badge-success" style="margin-bottom: 1px;">Activo</span>
-                    <span *ngIf="!usuario.activo" class="badge badge-danger" style="margin-bottom: 1px;">Inactivo</span>
-                  </td>
-                  <td>
-                    <div class="btn-group btn-group-xs my-0" role="group" aria-label="">
-                      <button type="button" class="btn btn-primary btn-sm" (click)="editar(usuario.id)">Editar</button>
-                      <button type="button" [ngClass]="{'btn-danger': usuario.activo, 'btn-success': !usuario.activo}"
-                        (click)="changeState(usuario.id)" class="btn  btn-sm"
-                        matTooltip="{{usuario.activo?'Desactivar usuario':'Activar usuario'}}"
-                        matTooltipClass="multiline-tooltip" mat-raised-button matTooltipPosition="above">
-                        <i *ngIf="usuario.activo" class="material-icons">block</i>
-                        <i *ngIf="!usuario.activo" class="material-icons">check_circle_outline</i>
-                      </button>
-                    </div>
-                  </td>
-                </tr>
-              </tbody>
-            </table>
-            <ngb-pagination *ngIf="listadoUsuarios.length < totalElements " [(page)]="page " [pageSize]="pageSize "
-              (pageChange)="listarUsuarios() " [collectionSize]="totalElements " [maxSize]="5 " [rotate]="true "
-              [boundaryLinks]="true ">
-            </ngb-pagination>
-          </div>
-          <div class="card-footer">
-            <div class="clearfix"></div>
-          </div>
+      <div class="col-sm-2 col-4">
+        <button type="button" class="btn mt-2 btn-sm btn-natura" (click)="nuevo()">
+          <i class="ion ion-ios-add"></i>&nbsp;Nuevo usuario
+        </button>
+      </div>
+      <div class="col-sm-8 col-8 text-center">
+        <h3 class="card-title mb-0 pt-2">
+          Usuarios
+        </h3>
+      </div>
+      <div class="col-sm-2 text-right ml-auto mx-125">
+        <div class="form-group">
+          <select #pageSizeSelect class="custom-select" (change)="changePageSize(pageSizeSelect.value)"
+            value="{{ pageSize }}">
+            <option value="{{ totalElements }}">Todos</option>
+            <option value="15">15 registros</option>
+            <option value="25">25 registros</option>
+            <option value="50">50 registros</option>
+            <option value="100">100 registros</option>
+          </select>
         </div>
       </div>
     </div>
   </div>
+  <!-- <h5 class="card-description">This information will let us know more about you.</h5> -->
+  <div class="card-body">
+    <table class="table table-sm table-inverse table-responsive-xl" matSort (matSortChange)="sortData($event)">
+      <thead class="thead-inverse">
+        <tr>
+          <th class="mx-25"><strong> #</strong> </th>
+          <th mat-sort-header="nombre" class="minx-150">Nombre</th>
+          <th mat-sort-header="email">Email</th>
+          <th>Rol(es)</th>
+          <th mat-sort-header="activo">Estado</th>
+          <th class="minx-150 mx-150">
+
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="listadoUsuarios.length == 0 ">
+          <td colspan="100%" class="text-center py-3">
+            No se encontraron registros
+          </td>
+        </tr>
+        <tr *ngFor="let usuario of listadoUsuarios; let index = index">
+          <td>
+            <strong> {{index + 1 + pageSize * page - pageSize }}</strong>
+          </td>
+          <td> {{usuario.nombreCompleto}} </td>
+          <td> {{usuario.email}} </td>
+          <td>
+            <span *ngFor="let rol of usuario.roles" class="badge badge-secondary"
+              style="margin-bottom: 1px; margin-right: 2px;">{{rol.nombre}}</span>
+          </td>
+          <td>
+            <span *ngIf="usuario.activo" class="badge badge-success rounded-pill"
+              style="margin-bottom: 1px;">Activo</span>
+            <span *ngIf="!usuario.activo" class="badge badge-danger rounded-pill"
+              style="margin-bottom: 1px;">Inactivo</span>
+          </td>
+          <td class="text-left">
+            <div class="btn-group btn-group-xs my-0" role="group">
+              <button type="button" class="btn btn-primary btn-sm" (click)="editar(usuario.id)">Editar</button>
+              <button type="button" [ngClass]="{'btn-danger': usuario.activo, 'btn-success': !usuario.activo}"
+                class="btn  btn-sm" mwlConfirmationPopover popoverTitle="¿Está seguro(a)?"
+                popoverMessage="Desea {{usuario.activo?'desactivar':'activar'}} el usuario" placement="top"
+                (confirm)="changeState(usuario.id)" (cancel)="cancel()">
+                <span *ngIf="usuario.activo">Desactivar</span>
+                <span *ngIf="!usuario.activo">Activar</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <ngb-pagination class="mx-auto mt-3" *ngIf="listadoUsuarios.length < totalElements " [(page)]="page "
+        [pageSize]="pageSize " (pageChange)="listarUsuarios() " [collectionSize]="totalElements " [maxSize]="5 "
+        [rotate]="true " [boundaryLinks]="true ">
+      </ngb-pagination>
+    </div>
+  </div>
+
+  <!-- <div class="card-footer">
+    <div class="clearfix"></div>
+  </div> -->
 </div>

@@ -1,0 +1,19 @@
+:host {
+    display: block;
+}
+
+.bg-navbar-theme.bg-primary {
+    background-color: #01274ee6 !important;
+}
+
+.navbar.bg-primary .navbar-text, .navbar.bg-primary .navbar-nav .nav-link {
+    color: #ffffff;
+}
+
+.img-logo {
+    max-width: 300px;
+    position: fixed;
+    bottom: 0;
+    left: 0;
+    padding: 20px;
+}

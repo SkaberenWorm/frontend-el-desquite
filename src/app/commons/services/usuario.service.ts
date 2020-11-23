@@ -1,9 +1,10 @@
-import { Injectable } from '@angular/core';
-import { environment } from 'src/environments/environment';
 import { HttpClient } from '@angular/common/http';
-import { SearchPagination } from '../interfaces/search-pagination';
+import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
+import { environment } from 'src/environments/environment';
+
 import { ResultadoProc } from '../interfaces/resultado-proc.interface';
+import { SearchPagination } from '../interfaces/search.pagination';
 import { UsuarioModel } from '../models/usuario.model';
 
 @Injectable({
@@ -20,20 +21,30 @@ export class UsuarioService {
 	 * @param searchPagination (En el seek se envía el texto ingresado en el buscador)
 	 * @return Una página de usuarios coincidentes con los filtros
 	 */
-	public findAllPaginatedWithFilters(searchPagination: SearchPagination<String>): Observable<ResultadoProc<IPaginacion<UsuarioModel>>> {
-		return this.http.post<ResultadoProc<IPaginacion<UsuarioModel>>>(`${this.urlBase}/page-with-filters`, searchPagination);
+	public findAllPaginatedWithSearch(searchPagination: SearchPagination<String>): Observable<ResultadoProc<IPaginacion<UsuarioModel>>> {
+		return this.http.post<ResultadoProc<IPaginacion<UsuarioModel>>>(`${this.urlBase}/page-all-by-search`, searchPagination);
 	}
 
 	/**
-	 * Guarda o actualiza un usuario
+	 * Guarda un usuario
 	 * 
 	 * @param usuario (Entidad UsuarioModel)
-	 * @return UsuarioModel guardado/actualizado
+	 * @return UsuarioModel guardado
 	 */
 	public save(usuario: UsuarioModel): Observable<ResultadoProc<UsuarioModel>> {
 		return this.http.post<ResultadoProc<UsuarioModel>>(`${this.urlBase}`, usuario);
 	}
 
+
+	/**
+	 * Actualiza un usuario
+	 * 
+	 * @param usuario (Entidad UsuarioModel)
+	 * @return UsuarioModel actualizado
+	 */
+	public update(usuario: UsuarioModel): Observable<ResultadoProc<UsuarioModel>> {
+		return this.http.put<ResultadoProc<UsuarioModel>>(`${this.urlBase}`, usuario);
+	}
 
 	/**
 	 * Cambia el estado del usuario.
@@ -59,5 +70,17 @@ export class UsuarioService {
 	 */
 	public findById(usuarioId: number): Observable<ResultadoProc<UsuarioModel>> {
 		return this.http.get<ResultadoProc<UsuarioModel>>(`${this.urlBase}/${usuarioId}`);
+	}
+
+	public findAllActivos(): Observable<ResultadoProc<Array<UsuarioModel>>> {
+		return this.http.get<ResultadoProc<Array<UsuarioModel>>>(`${this.urlBase}/find-all-activos`);
+	}
+
+	public findAllLideresActivos(): Observable<ResultadoProc<Array<UsuarioModel>>> {
+		return this.http.get<ResultadoProc<Array<UsuarioModel>>>(`${this.urlBase}/find-all-lideres-activos`);
+	}
+
+	public createTokenForResetPassword(usuario: UsuarioModel): Observable<ResultadoProc<boolean>> {
+		return this.http.post<ResultadoProc<boolean>>(`${this.urlBase}/new-token-for-change-password`, usuario);
 	}
 }

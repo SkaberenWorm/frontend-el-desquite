@@ -1,0 +1,321 @@
+@import '~src/vendor/styles/_custom-variables/libs';
+
+:host ::ng-deep div.md-editor-container[class] div.md-layout[class] {
+  .md-footer {
+    z-index: auto;
+    background-color: transparent;
+  }
+
+  .editor-container {
+    position: relative;
+
+     > div {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      left: 0;
+      z-index: 1;
+    }
+  }
+
+  // Font Awesome 5
+  .fa.fa-header::before {
+    content: unquote("\"\f1dc\"");
+  }
+  .fa.fa-file-code-o::before {
+    content: unquote("\"\f121\"");
+  }
+
+  @include feature-rtl {
+    .pull-right {
+      float: left !important;
+    }
+
+    .tool-bar .btn-group > .btn:first-child::before {
+      right: -9px;
+      left: auto !important;
+    }
+  }
+}
+
+:host ::ng-deep div.md-editor-container[class].fullscreen div.md-layout[class] {
+  .editor-container > div:last-child {
+    position: static;
+    z-index: 1;
+    height: 100%;
+    transform: none;
+  }
+
+  .md-footer {
+    z-index: 5;
+  }
+}
+
+@if $enable-light-style {
+  .light-style {
+    @import "~src/vendor/styles/_appwork/include";
+
+    border-color: $input-border-color;
+    background: $input-bg;
+
+    :host ::ng-deep div.md-editor-container[class] {
+      div.md-layout[class] .tool-bar,
+      div.md-layout[class] .md-footer {
+        background: $input-bg;
+      }
+
+      &.fullscreen {
+        z-index: $zindex-modal-top;
+      }
+
+      .tool-bar {
+        border-bottom: 1px dashed $input-border-color;
+
+        @include clearfix();
+      }
+
+      .md-footer {
+        border-top: 1px dashed $input-border-color;
+      }
+
+      .ace_gutter {
+        background: $gray-100;
+        color: $text-muted;
+      }
+
+      .ace_gutter-active-line {
+        background: $gray-100;
+      }
+
+      .preview-panel {
+        border-color: $input-border-color !important;
+        border-top: 1px solid;
+      }
+
+      .tool-bar .btn-group > .btn:first-child::before {
+        background-color: $input-border-color !important;
+      }
+
+      @media (max-width: (map-get($grid-breakpoints, md) - 1)) {
+        &.fullscreen {
+          .editor-panel,
+          .preview-panel {
+            border: 0 !important;
+          }
+
+          .editor-container > div:last-child {
+            position: relative;
+            z-index: 10;
+            transform: translateY(-100%);
+          }
+        }
+      }
+
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        div.editor-container[class] {
+          flex-direction: row;
+        }
+
+        div.preview-panel[class] {
+          border-top-width: 0;
+          border-left-width: 1px;
+        }
+
+        div.md-layout[class] .editor-container > div {
+          position: static;
+        }
+      }
+    }
+
+    @include feature-rtl-style {
+      :host ::ng-deep div.md-editor-container[class] {
+        @include media-breakpoint-up(md) {
+          .preview-panel {
+            border-right: 1px solid;
+            border-left-width: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@if $enable-material-style {
+  .material-style {
+    @import "~src/vendor/styles/_appwork/include-material";
+
+    border-color: $input-border-color;
+    background: $input-bg;
+
+    :host ::ng-deep div.md-editor-container[class] {
+      div.md-layout[class] .tool-bar,
+      div.md-layout[class] .md-footer {
+        background: $input-bg;
+      }
+
+      &.fullscreen {
+        z-index: $zindex-modal-top;
+      }
+
+      .tool-bar {
+        border-bottom: 1px dashed $input-border-color;
+
+        @include clearfix();
+      }
+
+      .md-footer {
+        border-top: 1px dashed $input-border-color;
+      }
+
+      .ace_gutter {
+        background: $gray-100;
+        color: $text-muted;
+      }
+
+      .ace_gutter-active-line {
+        background: $gray-100;
+      }
+
+      .preview-panel {
+        border-color: $input-border-color !important;
+        border-top: 1px solid;
+      }
+
+      .tool-bar .btn-group > .btn:first-child::before {
+        background-color: $input-border-color !important;
+      }
+
+      @media (max-width: (map-get($grid-breakpoints, md) - 1)) {
+        &.fullscreen {
+          .editor-panel,
+          .preview-panel {
+            border: 0 !important;
+          }
+
+          .editor-container > div:last-child {
+            position: relative;
+            z-index: 10;
+            transform: translateY(-100%);
+          }
+        }
+      }
+
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        div.editor-container[class] {
+          flex-direction: row;
+        }
+
+        div.preview-panel[class] {
+          border-top-width: 0;
+          border-left-width: 1px;
+        }
+
+        div.md-layout[class] .editor-container > div {
+          position: static;
+        }
+      }
+    }
+
+    @include feature-rtl-style {
+      :host ::ng-deep div.md-editor-container[class] {
+        @include media-breakpoint-up(md) {
+          .preview-panel {
+            border-right: 1px solid;
+            border-left-width: 0;
+          }
+        }
+      }
+    }
+  }
+}
+
+@if $enable-dark-style {
+  .dark-style {
+    @import "~src/vendor/styles/_appwork/include-dark";
+
+    border-color: $input-border-color;
+    background: rgba-to-hex($input-bg, $body-bg);
+
+    :host ::ng-deep div.md-editor-container[class] {
+      div.md-layout[class] .tool-bar,
+      div.md-layout[class] .md-footer {
+        background: rgba-to-hex($input-bg, $body-bg);
+      }
+
+      &.fullscreen {
+        z-index: $zindex-modal-top;
+      }
+
+      .tool-bar {
+        border-bottom: 1px dashed $input-border-color;
+
+        @include clearfix();
+      }
+
+      .md-footer {
+        border-top: 1px dashed $input-border-color;
+      }
+
+      .ace_gutter {
+        background: $gray-100;
+        color: $text-muted;
+      }
+
+      .ace_gutter-active-line {
+        background: $gray-100;
+      }
+
+      .preview-panel {
+        border-color: $input-border-color !important;
+        border-top: 1px solid;
+        color: #4E5155;
+      }
+
+      .tool-bar .btn-group > .btn:first-child::before {
+        background-color: $input-border-color !important;
+      }
+
+      @media (max-width: (map-get($grid-breakpoints, md) - 1)) {
+        &.fullscreen {
+          .editor-panel,
+          .preview-panel {
+            border: 0 !important;
+          }
+
+          .editor-container > div:last-child {
+            position: relative;
+            z-index: 10;
+            transform: translateY(-100%);
+          }
+        }
+      }
+
+      @media (min-width: map-get($grid-breakpoints, md)) {
+        div.editor-container[class] {
+          flex-direction: row;
+        }
+
+        div.preview-panel[class] {
+          border-top-width: 0;
+          border-left-width: 1px;
+        }
+
+        div.md-layout[class] .editor-container > div {
+          position: static;
+        }
+      }
+    }
+
+    @include feature-rtl-style {
+      :host ::ng-deep div.md-editor-container[class] {
+        @include media-breakpoint-up(md) {
+          .preview-panel {
+            border-right: 1px solid;
+            border-left-width: 0;
+          }
+        }
+      }
+    }
+  }
+}

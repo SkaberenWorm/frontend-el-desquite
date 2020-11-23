@@ -1,0 +1,197 @@
+@import '~src/vendor/styles/_custom-variables/libs';
+
+$plyr-range-track-height: 4px !default;
+$plyr-range-thumb-height: 14px !default;
+$plyr-progress-loading-size: 15px !default;
+$plyr-audio-controls-bg: transparent !default;
+$plyr-audio-progress-buffered-bg: rgba(0, 0, 0, .1) !default;
+$plyr-control-spacing: 10px !default;
+$plyr-font-weight-regular: 400 !default;
+
+// Variables
+@import 'node_modules/plyr/src/sass/settings/breakpoints';
+@import 'node_modules/plyr/src/sass/settings/colors';
+@import 'node_modules/plyr/src/sass/settings/cosmetics';
+@import 'node_modules/plyr/src/sass/settings/type';
+@import 'node_modules/plyr/src/sass/settings/badges';
+@import 'node_modules/plyr/src/sass/settings/captions';
+@import 'node_modules/plyr/src/sass/settings/controls';
+@import 'node_modules/plyr/src/sass/settings/helpers';
+@import 'node_modules/plyr/src/sass/settings/menus';
+@import 'node_modules/plyr/src/sass/settings/progress';
+@import 'node_modules/plyr/src/sass/settings/sliders';
+@import 'node_modules/plyr/src/sass/settings/tooltips';
+@import 'node_modules/plyr/src/sass/lib/animation';
+@import 'node_modules/plyr/src/sass/lib/functions';
+@import 'node_modules/plyr/src/sass/lib/mixins';
+
+// Components
+:host ::ng-deep { @import 'node_modules/plyr/src/sass/base'; }
+:host ::ng-deep { @import 'node_modules/plyr/src/sass/components/badges'; }
+:host ::ng-deep { @import 'node_modules/plyr/src/sass/components/captions'; }
+:host ::ng-deep { @import 'node_modules/plyr/src/sass/components/control'; }
+:host ::ng-deep { @import 'node_modules/plyr/src/sass/components/controls'; }
+:host ::ng-deep { @import 'node_modules/plyr/src/sass/components/menus'; }
+:host ::ng-deep { @import 'node_modules/plyr/src/sass/components/sliders'; }
+:host ::ng-deep { @import 'node_modules/plyr/src/sass/components/poster'; }
+:host ::ng-deep { @import 'node_modules/plyr/src/sass/components/times'; }
+:host ::ng-deep { @import 'node_modules/plyr/src/sass/components/tooltips'; }
+:host ::ng-deep { @import 'node_modules/plyr/src/sass/components/progress'; }
+:host ::ng-deep { @import 'node_modules/plyr/src/sass/components/volume'; }
+:host ::ng-deep { @import 'node_modules/plyr/src/sass/types/audio'; }
+:host ::ng-deep { @import 'node_modules/plyr/src/sass/types/video'; }
+:host ::ng-deep { @import 'node_modules/plyr/src/sass/states/fullscreen'; }
+:host ::ng-deep { @import 'node_modules/plyr/src/sass/plugins/ads'; }
+:host ::ng-deep { @import 'node_modules/plyr/src/sass/plugins/preview-thumbnails'; }
+:host ::ng-deep { @import 'node_modules/plyr/src/sass/utils/animation'; }
+:host ::ng-deep { @import 'node_modules/plyr/src/sass/utils/hidden'; }
+
+:host ::ng-deep .plyr--audio .plyr__controls {
+  padding: 0;
+}
+
+:host ::ng-deep .plyr__progress__container,
+:host ::ng-deep .plyr__volume input[type=range] {
+  flex: 0 1 auto;
+}
+
+:host ::ng-deep .plyr__menu__container {
+  @include feature-rtl {
+    direction: rtl;
+    text-align: right;
+
+    .plyr__control--forward {
+      padding-left: ceil($plyr-control-padding * 4);
+      padding-right: ceil($plyr-control-padding * 1.5);
+
+      &::after {
+        border-left-color: transparent;
+        border-right-color: rgba($plyr-menu-color, 0.8);
+        right: auto;
+        left: 5px;
+      }
+
+      &.plyr__tab-focus::after,
+      &:hover::after {
+        border-right-color: currentColor;
+      }
+    }
+
+    .plyr__control--back {
+      padding-left: ceil($plyr-control-padding * 1.5);
+      padding-right: ceil($plyr-control-padding * 4);
+
+      &::after {
+        border-right-color: transparent;
+        border-left-color: rgba($plyr-menu-color, 0.8);
+        left: auto;
+        right: $plyr-control-padding;
+      }
+
+      &.plyr__tab-focus::after,
+      &:hover::after {
+        border-left-color: currentColor;
+      }
+    }
+
+    .plyr__control[role='menuitemradio'] {
+      padding-left: ceil($plyr-control-padding * 1.5);
+      padding-right: $plyr-control-padding;
+
+      &::before {
+        margin-right: 0;
+        margin-left: $plyr-control-spacing;
+      }
+
+      &::after {
+        left: auto;
+        right: 12px;
+      }
+    }
+
+    .plyr__menu__value {
+      margin-right: auto;
+      margin-left: -($plyr-control-padding - 2);
+      padding-left: 0;
+      padding-right: ceil($plyr-control-padding * 3.5);
+    }
+  }
+}
+
+@if $enable-light-style {
+  .light-style :host ::ng-deep {
+    @import "~src/vendor/styles/_appwork/include";
+
+    .plyr {
+      font-family: $font-family-sans-serif;
+      color: $body-color;
+    }
+
+    .plyr--audio .plyr__controls {
+      color: $body-color;
+    }
+
+    .plyr__tooltip {
+      font-size: $font-size-sm;
+      line-height: $line-height-sm;
+    }
+  }
+}
+
+@if $enable-material-style {
+  .material-style :host ::ng-deep {
+    @import "~src/vendor/styles/_appwork/include-material";
+
+    .plyr {
+      font-family: $font-family-sans-serif;
+      color: $body-color;
+    }
+
+    .plyr--audio .plyr__controls {
+      color: $body-color;
+    }
+
+    .plyr__tooltip {
+      font-size: $font-size-sm;
+      line-height: $line-height-sm;
+    }
+  }
+}
+
+@if $enable-dark-style {
+  .dark-style :host ::ng-deep {
+    @import "~src/vendor/styles/_appwork/include-dark";
+
+    .plyr {
+      font-family: $font-family-sans-serif;
+      color: $body-color;
+    }
+
+    .plyr--audio .plyr__controls {
+      color: $body-color;
+    }
+
+    .plyr__tooltip {
+      font-size: $font-size-sm;
+      line-height: $line-height-sm;
+    }
+
+    .plyr--audio .plyr__progress__buffer {
+      color: $gray-200;
+    }
+
+    .plyr--full-ui.plyr--audio input[type='range'] {
+      &::-webkit-slider-runnable-track {
+        background-color: $gray-100;
+      }
+
+      &::-moz-range-track {
+        background-color: $gray-100;
+      }
+
+      &::-ms-track {
+        background-color: $gray-100;
+      }
+    }
+  }
+}

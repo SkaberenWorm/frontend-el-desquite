@@ -1,12 +1,18 @@
 import { Injectable } from '@angular/core';
-import { UtilFormating } from './util.formating';
-import { FormControl, FormGroup, AbstractControl } from '@angular/forms';
+import { AbstractControl, FormControl, FormGroup } from '@angular/forms';
 import * as moment from 'moment';
+
+import { UtilFormating } from './util.formating';
+
 @Injectable()
 export class UtilValidation {
-  constructor(public utilFormating: UtilFormating) {}
+
+
+
+  constructor(public utilFormating: UtilFormating) { }
 
   static MatchPassword(AC: AbstractControl) {
+    // console.log(AC);
     const password = AC.root.get('password').value; // to get value in input tag
     const confirmPassword = AC.root.get('repassword').value; // to get value in input tag
     if (password !== confirmPassword) {
@@ -16,8 +22,22 @@ export class UtilValidation {
     }
   }
 
+
+  public noSeleccionado = (control: FormControl, opcionesValidas: Array<string>): { [s: string]: boolean } => {
+    for (let index = 0; index < opcionesValidas.length; index++) {
+      const opcion = opcionesValidas[index];
+      if (opcion == control.value) {
+        return null;
+      }
+    }
+    return {
+      noSeleccionado: true
+    };
+  }
+
   public fechaValida = (control: FormControl): { [s: string]: boolean } => {
     moment().locale('es');
+    // console.log(control.value);
     if (control.value !== '') {
       if (!moment(control.value, 'DD/MM/YYYY', true).isValid()) {
         return {
@@ -26,7 +46,7 @@ export class UtilValidation {
       }
     }
     return null;
-  };
+  }
   public fechaHoraValida = (control: FormControl): { [s: string]: boolean } => {
     moment().locale('es');
     if (control.value !== '') {
@@ -37,7 +57,7 @@ export class UtilValidation {
       }
     }
     return null;
-  };
+  }
   public horaValida = (control: FormControl): { [s: string]: boolean } => {
     moment().locale('es');
     if (!moment(control.value, 'HH:mm', true).isValid()) {
@@ -46,12 +66,15 @@ export class UtilValidation {
       };
     }
     return null;
-  };
+  }
+
+
 
   public porcentajeValido = (control: FormControl): { [s: string]: boolean } => {
+
     const valor: any = control.value;
     if (valor !== null) {
-      if (!/^\d+$/.test(valor)) {
+      if (! /^\d+$/.test(valor)) {
         return {
           porcentajeValido: true
         };
@@ -62,24 +85,26 @@ export class UtilValidation {
         };
       }
     }
-  };
+
+  }
 
   public emailValido = (control: FormControl): { [s: string]: boolean } => {
-    if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(control.value)) {
+    if (! /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(control.value)) {
       return {
         emailValido: true
       };
     }
-  };
+  }
   public celularValido = (control: FormControl): { [s: string]: boolean } => {
-    if (!/^\+?56(\s?)(0?9)(\s?)[98765]\d{7}$/.test(control.value)) {
+    if (! /^\+?56(\s?)(0?9)(\s?)[98765]\d{7}$/.test(control.value)) {
       return {
         celularValido: true
       };
     }
-  };
+  }
 
   public rutValido = (control: FormControl): { [s: string]: boolean } => {
+
     let rut = <string>control.value;
     // console.log(rut);
     if (rut === null || rut === undefined || rut === '') {
@@ -112,25 +137,22 @@ export class UtilValidation {
       // Sumar al Contador General
       suma = suma + index;
       // Consolidar Múltiplo dentro del rango [2,7]
-      if (multiplo < 7) {
-        multiplo = multiplo + 1;
-      } else {
-        multiplo = 2;
-      }
+      if (multiplo < 7) { multiplo = multiplo + 1; } else { multiplo = 2; }
     }
 
     // Calcular Dígito Verificador en base al Módulo 11
     const dvEsperado: string = String(11 - (suma % 11));
     // Casos Especiales (0 y K)
-    dv = dv === 'K' ? '10' : dv;
-    dv = dv === '0' ? '11' : dv;
+    dv = (dv === 'K') ? '10' : dv;
+    dv = (dv === '0') ? '11' : dv;
 
     // console.log(dvEsperado, dv);
     if (dvEsperado !== dv) {
       return { rutValido: true };
     }
-  };
+  }
   public validateDate = (control: FormControl): { [s: string]: boolean } => {
+
     if (control.value !== '') {
       if (!moment(control.value, 'DD/MM/YYYY', true).isValid()) {
         return {
@@ -139,23 +161,23 @@ export class UtilValidation {
       }
     }
     return null;
-  };
+  }
 
   public invalidEmail = (control: FormControl): { [s: string]: boolean } => {
     if (control.value === '') {
       return;
     }
-    if (!/^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(control.value)) {
+    if (! /^\w+([\.-]?\w+)*@\w+([\.-]?\w+)*(\.\w{2,3})+$/.test(control.value)) {
       return {
         invalidEmail: true
       };
     }
-  };
-
+  }
   setFormForValidate(form: FormGroup) {
     Object.keys(form.controls).forEach(field => {
       const control = form.get(field);
       control.markAsTouched({ onlySelf: true });
     });
   }
+
 }

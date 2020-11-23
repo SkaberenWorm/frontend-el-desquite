@@ -1,24 +1,11 @@
 import { NgModule } from '@angular/core';
-import { Routes, RouterModule } from '@angular/router';
-import { RolAdminGuard } from 'src/app/commons/guards/rol-admin.guard';
+import { RouterModule, Routes } from '@angular/router';
 import { LoginGuard } from 'src/app/commons/guards/login.guard';
-import { UsuarioComponent } from './usuario/usuario.component';
-import { ProductoComponent } from './producto/producto.component';
+import { RolAdminGuard } from 'src/app/commons/guards/rol-admin.guard';
 
 const routes: Routes = [
-  {
-    path: 'usuario',
-    component: UsuarioComponent,
-    canLoad: [LoginGuard, RolAdminGuard],
-    loadChildren: './usuario/usuario.module#UsuarioModule'
-  },
-  {
-    path: 'producto',
-    component: ProductoComponent,
-    canLoad: [LoginGuard, RolAdminGuard],
-    loadChildren: './producto/producto.module#ProductoModule'
-  },
-  
+  { path: 'usuarios', canLoad: [LoginGuard, RolAdminGuard], loadChildren: () => import('./usuario/usuario.module').then(m => m.UsuarioModule) },
+  { path: 'productos', canLoad: [LoginGuard, RolAdminGuard], loadChildren: () => import('./producto/producto.module').then(m => m.ProductoModule) },
 ];
 
 @NgModule({

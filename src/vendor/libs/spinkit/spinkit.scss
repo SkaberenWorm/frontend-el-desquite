@@ -1,0 +1,11 @@
+@import "node_modules/spinkit/spinkit";
+
+:root {
+  --sk-size: 30px;
+  --sk-color: #ccc;
+}
+
+.sk-wave {
+  width: 40px;
+  white-space: nowrap;
+}

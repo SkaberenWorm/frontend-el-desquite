@@ -1,5 +1,7 @@
 import { RespuestaLogin } from 'src/app/commons/interfaces/respuesta-login-interface';
-import * as fromActions from '../actions';
+import * as fromActions from '../actions/auth.actions';
+import { createReducer, on } from '@ngrx/store';
+import { Action } from '@ngrx/store';
 
 export interface AuthState {
   loading: boolean;
@@ -7,6 +9,7 @@ export interface AuthState {
   login: RespuestaLogin;
   user: string;
   error: any;
+  logout: boolean;
 }
 
 const initState: AuthState = {
@@ -16,41 +19,39 @@ const initState: AuthState = {
   login: null,
   error: null,
   user: null,
+  logout: true,
 
 };
-export function authReducer(state = initState, action: fromActions.authActions): AuthState {
-  switch (action.type) {
-    case fromActions.AUTENTICAR:
-      return {
-        ...state,
-        loading: true,
-        user: action.identificacion.usuario,
-        error: null
-      };
-    case fromActions.AUTENTICAR_SUCCESS:
-      return {
-        ...state,
-        authenticate: true,
-        loading: false,
-        login: action.respuesta,
-        error: null
-      };
-    case fromActions.AUTENTICAR_FAIL:
-      return {
-        ...state,
-        authenticate: false,
-        loading: false,
-        error: { error: action.error.error, status: action.error.status }
-      };
-    case fromActions.SET_AUTENTICADO:
-      return {
-        ...state,
-        authenticate: true,
-        user: action.usuario
-      };
-    case fromActions.LOGOUT:
-      return this.initState;
-    default:
-      return state;
-  }
+
+const _authReducer = createReducer(initState,
+  on(fromActions.autenticar, (state, { identificacion }): AuthState => ({
+    ...state,
+    user: identificacion.usuario
+  })),
+  on(fromActions.autenticarSuccess, (state, { respuesta }): AuthState => ({
+    ...state,
+    authenticate: true,
+    loading: false,
+    login: respuesta,
+    error: null,
+    logout: false
+  })),
+  on(fromActions.autenticarFail, (state, { error }): AuthState => ({
+    ...state,
+    authenticate: false,
+    loading: false,
+    error: { error: error.error.error, status: error.error.status }
+  })),
+  on(fromActions.setAuthenticado, (state, { usuario }): AuthState => ({
+    ...state,
+    authenticate: true,
+    user: usuario,
+    logout: false,
+  })),
+  on(fromActions.logout, (): AuthState => initState),
+);
+
+export function authReducer(state: AuthState | undefined, action: Action) {
+  return _authReducer(state, action);
 }
+

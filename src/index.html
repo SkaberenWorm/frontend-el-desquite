@@ -1,35 +1,89 @@
 <!DOCTYPE html>
-<html>
+<html lang="es" class="layout-navbar-fixed material-style layout-fixed">
 
   <head>
-    <base href="/" />
-    <meta charset="utf-8" />
-    <link rel="apple-touch-icon" sizes="76x76" href="./assets/img/apple-icon.png" />
-    <link rel="icon" type="image/png" href="./assets/img/favicon.png" />
-    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
-    <meta name="Description" content="Sistema de Ventas" />
-    <meta name="theme-color" content="#34486d" />
-    <title>El Desquite</title>
-    <meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
-    <meta name="viewport" content="width=device-width" />
+    <base href="/">
+    <title>Home - NATURA</title>
 
-    <!--     Fonts and icons     -->
-    <link href="https://maxcdn.bootstrapcdn.com/font-awesome/latest/css/font-awesome.min.css" rel="stylesheet" />
-    <link rel="stylesheet" type="text/css"
-      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700|Material+Icons" />
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="IE=edge,chrome=1">
+    <meta name="description" content="">
+    <meta name="viewport"
+      content="width=device-width, initial-scale=1.0, user-scalable=no, minimum-scale=1.0, maximum-scale=1.0">
+    <link rel="icon" type="image/x-icon" href="assets/img/natura/logo-sm.png">
+
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,300i,400,400i,500,500i,700,700i,900"
+      rel="stylesheet">
+
+    <!-- Icon fonts -->
+    <link rel="stylesheet" href="assets/vendor/fonts/fontawesome.css">
+    <link rel="stylesheet" href="assets/vendor/fonts/ionicons.css">
+
+    <!-- Core stylesheets -->
+    <link rel="stylesheet" href="vendor/styles/bootstrap-material.css" class="theme-settings-bootstrap-css">
+    <link rel="stylesheet" href="vendor/styles/appwork-material.css" class="theme-settings-appwork-css">
+    <link rel="stylesheet" href="vendor/styles/theme-corporate-material.css" class="theme-settings-theme-css">
+    <link rel="stylesheet" href="vendor/styles/colors-material.css" class="theme-settings-colors-css">
+    <link rel="stylesheet" href="vendor/styles/uikit.css">
+
+    <meta name="theme-color" content="#01274e">
+
+    <script src="assets/vendor/js/material-ripple.js"></script>
+    <script src="assets/vendor/js/layout-helpers.js"></script>
+
+    <!-- Splash screen -->
+    <style>
+      .app-splash-screen {
+        background: #01274e;
+        position: fixed;
+        display: block;
+        z-index: 99999999;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        opacity: 1;
+        -webkit-transition: opacity .3s;
+        transition: opacity .3s;
+      }
+
+      .dark-style .app-splash-screen {
+        background: #25282E;
+      }
+
+      .app-splash-screen-content {
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        transform: translate3d(0, 0, 0);
+        -webkit-transform: translate3d(0, 0, 0);
+      }
+    </style>
+    <!-- / Splash screen -->
+
+    <!-- Custom elements polyfill -->
+    <script>this.customElements || document.write('<script src="//unpkg.com/document-register-element"><\x2fscript>');</script>
+    <link rel="manifest" href="manifest.webmanifest">
+    <meta name="theme-color" content="#1976d2">
   </head>
 
   <body>
+
+    <!-- Splash screen -->
     <div class="app-splash-screen"
-      style="background: #00284F; position: fixed; z-index: 99999999; top: 0; right: 0; bottom: 0; left: 0; opacity: 1; -webkit-transition: opacity .3s; transition: opacity .3s;">
+      style="background: #ffffff; position: fixed; z-index: 99999999; top: 0; right: 0; bottom: 0; left: 0; opacity: 1; -webkit-transition: opacity .3s; transition: opacity .3s;">
       <div class="app-splash-screen-content"
-        style="position: absolute; top: 50%; left: 50%; -webkit-transform: translate(-50%, -50%); transform: translate(-50%, -50%);">
-        <div>
-          <img src="./assets/img/icon-sir/icon-192x192.png" />
-        </div>
+        style="position: absolute; top: 50%; left: 60%; -webkit-transform: translate(-50%, -60%); transform: translate(-50%, -60%);">
+        <img src="assets/img/natura/logo-lg.png" class="float-left my-auto " width="50%" />
       </div>
     </div>
-    <app-my-app> </app-my-app>
+    <!-- / Splash screen -->
+
+    <!-- App root -->
+    <app-root></app-root>
+    <!-- / App root -->
+
+
     <noscript>Please enable JavaScript to continue using this application.</noscript>
   </body>
 

@@ -1,0 +1,63 @@
+// -------------------------------------------------------------------------------
+// Imports
+
+@import "~src/vendor/libs/ng2-nouislider/mixins";
+@import "~src/vendor/libs/quill/mixins";
+@import "~src/vendor/libs/ngx-dropzone-wrapper/mixins";
+@import "~src/vendor/libs/ngx-swiper-wrapper/mixins";
+@import "~src/vendor/libs/spinkit/mixins";
+@import "~src/vendor/libs/ngx-plyr/mixins";
+@import "~src/vendor/libs/ng-select/mixins";
+@import "~src/vendor/libs/ngx-chips/mixins";
+@import "~src/vendor/libs/ngx-datatable/mixins";
+@import "~src/vendor/libs/ng2-archwizard/mixins";
+@import "~src/vendor/libs/angular-calendar/mixins";
+@import "~src/vendor/libs/ngx-sweetalert2/mixins";
+
+// -------------------------------------------------------------------------------
+// Theme mixin
+
+@mixin appwork-libs-theme($background, $color: null) {
+  @include nouislider-theme($background);
+  @include quill-theme($background);
+  @include dropzone-theme($background);
+  @include swiper-theme($background);
+  @include spinkit-theme($background);
+  @include plyr-theme($background, $color);
+  @include ng-select-theme($background, $color);
+  @include ngx-chips-theme($background, $color);
+  @include ngx-datatable-theme($background, $color);
+  @include ng2-archwizard-theme($background);
+  @include angular-calendar-theme($background, $color);
+  @include sweetalert2-theme($background, $color);
+}
+
+@mixin appwork-libs-material-theme($background, $color: null) {
+  @include material-nouislider-theme($background);
+  @include quill-theme($background);
+  @include dropzone-theme($background);
+  @include swiper-theme($background);
+  @include spinkit-theme($background);
+  @include plyr-theme($background, $color);
+  @include material-ng-select-theme($background, $color);
+  @include ngx-chips-theme($background, $color);
+  @include ngx-datatable-theme($background, $color);
+  @include ng2-archwizard-theme($background);
+  @include angular-calendar-theme($background, $color);
+  @include sweetalert2-theme($background, $color);
+}
+
+@mixin appwork-libs-dark-theme($background, $color: null) {
+  @include nouislider-theme($background);
+  @include quill-theme($background);
+  @include dropzone-theme($background);
+  @include swiper-theme($background);
+  @include spinkit-theme($background);
+  @include plyr-theme($background, $color);
+  @include ng-select-theme($background, $color);
+  @include ngx-chips-theme($background, $color);
+  @include ngx-datatable-theme($background, $color);
+  @include ng2-archwizard-theme($background);
+  @include angular-calendar-theme($background, $color);
+  @include sweetalert2-dark-theme($background, $color);
+}

@@ -1,0 +1,14 @@
+@import '~src/vendor/styles/_custom-variables/libs';
+@import 'ladda';
+
+@include feature-rtl(false) {
+  :host ::ng-deep {
+    .ladda-button[data-style=slide-right] .ladda-spinner {
+      right: auto;
+    }
+
+    .ladda-spinner > div {
+      left: 25% !important;
+    }
+  }
+}

@@ -42,8 +42,6 @@ export class Util {
 
   public static setFormForValidate(form: FormGroup) {
     Object.keys(form.controls).forEach(field => {
-      console.log(field);
-
       const control = form.get(field);
       control.markAsTouched({ onlySelf: true });
     });

@@ -1,0 +1,330 @@
+@import '~src/vendor/styles/_custom-variables/libs';
+
+$ngx-chips-tag-line-height: 1.5rem !default;
+$ngx-chips-encapsulated: false !default;
+$parent: if($ngx-chips-encapsulated, ':host ::ng-deep', 'tag-input');
+
+#{$parent} tag-ripple {
+  display: none !important;
+}
+
+#{$parent} .ng2-tag-input[class] {
+  display: block;
+  width: 100%;
+
+  .ng2-tags-container {
+    display: flex;
+    width: 100%;
+    flex: 1 1 auto;
+    flex-wrap: wrap;
+  }
+
+  tag,
+  .ng2-tag-input__text-input {
+    min-height: $ngx-chips-tag-line-height;
+    height: $ngx-chips-tag-line-height;
+    letter-spacing: normal;
+    line-height: $ngx-chips-tag-line-height;
+  }
+
+  .tag-wrapper {
+    display: flex;
+    flex: 0 1 auto;
+  }
+
+  tag {
+    display: block;
+    flex: 0 1 auto;
+
+    &:not(.tag--editing) {
+      box-shadow: none !important;
+    }
+
+    &.tag--editing {
+      border: 0;
+      box-shadow: 0 0 0 1px rgba(0, 0, 0, .2) inset;
+    }
+  }
+
+  tag delete-icon {
+    opacity: .5;
+
+    @include feature-rtl {
+      text-align: left;
+    }
+
+    &:hover,
+    &:focus {
+      opacity: 1;
+      transform: none;
+    }
+  }
+
+  tag delete-icon svg {
+    height: $ngx-chips-tag-line-height !important;
+  }
+
+  &.ng2-tag-input--disabled {
+    tag {
+      cursor: default !important;
+    }
+
+    .ng2-tag-input__text-input {
+      display: none !important;
+    }
+  }
+}
+
+#{$parent} .ng2-tag-input__text-input {
+  background: none;
+
+  &::placeholder {
+    opacity: 1;
+  }
+}
+
+@if $enable-light-style {
+  .light-style {
+    @import "~src/vendor/styles/_appwork/include";
+    @import 'mixins';
+
+    $ngx-chips-tag-spacer: px-to-rem(floor(rem-to-px(($input-height-inner - $ngx-chips-tag-line-height) / 2)));
+
+    #{$parent} {
+      .ng2-tag-input {
+        padding: 0 0 $ngx-chips-tag-spacer 0;
+        min-height: $input-height;
+        border-color: $input-border-color;
+      }
+
+      .ng2-tag-input tag,
+      .ng2-tag-input .ng2-tag-input__text-input {
+        margin: $ngx-chips-tag-spacer $ngx-chips-tag-spacer 0 0;
+        padding: 0 $badge-padding-x;
+        color: $body-color;
+        font-size: $font-size-base;
+        font-family: $font-family-base;
+      }
+
+      .ng2-tag-input tag {
+        background-color: $badge-default-bg;
+
+        @include border-radius($badge-border-radius);
+
+        &:not(:focus):not(.tag--editing):not(:active):not(.readonly):hover {
+          background-color: $badge-default-bg;
+          color: $body-color;
+        }
+
+        &:not(.readonly):not(.tag--editing):focus,
+        &:not(.readonly):not(.tag--editing):active {
+          background-color: $gray-300;
+          color: $body-color;
+        }
+
+        path {
+          fill: $body-color !important;
+        }
+      }
+
+      .ng2-tag-input.ng2-tag-input--disabled {
+        tag:not(.readonly):not(.tag--editing):focus,
+        tag:not(.readonly):not(.tag--editing):active,
+        tag:not(:focus):not(.tag--editing):not(:active):not(.readonly):hover {
+          background-color: $badge-default-bg;
+          color: $body-color;
+        }
+      }
+
+      .ng2-tag-input__text-input::placeholder {
+        color: $input-placeholder-color;
+      }
+    }
+
+    @include ngx-chips-validation-state("valid", $form-feedback-valid-color, $ngx-chips-encapsulated);
+    @include ngx-chips-validation-state("invalid", $form-feedback-invalid-color, $ngx-chips-encapsulated);
+
+    @each $color, $value in $theme-colors {
+      @if $color != primary {
+        @if ($ngx-chips-encapsulated) {
+          :host ::ng-deep .ngx-chips-#{$color} { @include ngx-chips-variant($value); }
+        } @else {
+          .ngx-chips-#{$color} { @include ngx-chips-variant($value); }
+        }
+      }
+    }
+
+    @include feature-rtl-style {
+      #{$parent} .ng2-tag-input {
+        tag,
+        .ng2-tag-input__text-input {
+          margin: $ngx-chips-tag-spacer 0 0 $ngx-chips-tag-spacer;
+        }
+      }
+    }
+  }
+}
+
+@if $enable-material-style {
+  .material-style {
+    @import "~src/vendor/styles/_appwork/include-material";
+    @import 'mixins';
+
+    $ngx-chips-tag-spacer: px-to-rem(floor(rem-to-px(($input-height-inner - $ngx-chips-tag-line-height) / 2)));
+
+    #{$parent} {
+      .ng2-tag-input {
+        padding: 0 0 $ngx-chips-tag-spacer 0;
+        min-height: $input-height;
+        border-color: $input-border-color;
+      }
+
+      .ng2-tag-input tag,
+      .ng2-tag-input .ng2-tag-input__text-input {
+        margin: $ngx-chips-tag-spacer $ngx-chips-tag-spacer 0 0;
+        padding: 0 $badge-padding-x;
+        color: $body-color;
+        font-size: $font-size-base;
+        font-family: $font-family-base;
+      }
+
+      .ng2-tag-input tag {
+        background-color: $badge-default-bg;
+
+        @include border-radius($badge-border-radius);
+
+        &:not(:focus):not(.tag--editing):not(:active):not(.readonly):hover {
+          background-color: $badge-default-bg;
+          color: $body-color;
+        }
+
+        &:not(.readonly):not(.tag--editing):focus,
+        &:not(.readonly):not(.tag--editing):active {
+          background-color: $gray-300;
+          color: $body-color;
+        }
+
+        path {
+          fill: $body-color !important;
+        }
+      }
+
+      .ng2-tag-input.ng2-tag-input--disabled {
+        tag:not(.readonly):not(.tag--editing):focus,
+        tag:not(.readonly):not(.tag--editing):active,
+        tag:not(:focus):not(.tag--editing):not(:active):not(.readonly):hover {
+          background-color: $badge-default-bg;
+          color: $body-color;
+        }
+      }
+
+      .ng2-tag-input__text-input::placeholder {
+        color: $input-placeholder-color;
+      }
+    }
+
+    @include ngx-chips-validation-state("valid", $form-feedback-valid-color, $ngx-chips-encapsulated);
+    @include ngx-chips-validation-state("invalid", $form-feedback-invalid-color, $ngx-chips-encapsulated);
+
+    @each $color, $value in $theme-colors {
+      @if $color != primary {
+        @if ($ngx-chips-encapsulated) {
+          :host ::ng-deep .ngx-chips-#{$color} { @include ngx-chips-variant($value); }
+        } @else {
+          .ngx-chips-#{$color} { @include ngx-chips-variant($value); }
+        }
+      }
+    }
+
+    @include feature-rtl-style {
+      #{$parent} .ng2-tag-input {
+        tag,
+        .ng2-tag-input__text-input {
+          margin: $ngx-chips-tag-spacer 0 0 $ngx-chips-tag-spacer;
+        }
+      }
+    }
+  }
+}
+
+@if $enable-dark-style {
+  .dark-style {
+    @import "~src/vendor/styles/_appwork/include-dark";
+    @import 'mixins';
+
+    $ngx-chips-tag-spacer: px-to-rem(floor(rem-to-px(($input-height-inner - $ngx-chips-tag-line-height) / 2)));
+
+    #{$parent} {
+      .ng2-tag-input {
+        padding: 0 0 $ngx-chips-tag-spacer 0;
+        min-height: $input-height;
+        border-color: $input-border-color;
+      }
+
+      .ng2-tag-input tag,
+      .ng2-tag-input .ng2-tag-input__text-input {
+        margin: $ngx-chips-tag-spacer $ngx-chips-tag-spacer 0 0;
+        padding: 0 $badge-padding-x;
+        color: $body-color;
+        font-size: $font-size-base;
+        font-family: $font-family-base;
+      }
+
+      .ng2-tag-input tag {
+        background-color: $badge-default-bg;
+
+        @include border-radius($badge-border-radius);
+
+        &:not(:focus):not(.tag--editing):not(:active):not(.readonly):hover {
+          background-color: $badge-default-bg;
+          color: $body-color;
+        }
+
+        &:not(.readonly):not(.tag--editing):focus,
+        &:not(.readonly):not(.tag--editing):active {
+          background-color: $gray-300;
+          color: $body-color;
+        }
+
+        path {
+          fill: $body-color !important;
+        }
+      }
+
+      .ng2-tag-input.ng2-tag-input--disabled {
+        tag:not(.readonly):not(.tag--editing):focus,
+        tag:not(.readonly):not(.tag--editing):active,
+        tag:not(:focus):not(.tag--editing):not(:active):not(.readonly):hover {
+          background-color: $badge-default-bg;
+          color: $body-color;
+        }
+      }
+
+      .ng2-tag-input__text-input::placeholder {
+        color: $input-placeholder-color;
+      }
+    }
+
+    @include ngx-chips-validation-state("valid", $form-feedback-valid-color, $ngx-chips-encapsulated);
+    @include ngx-chips-validation-state("invalid", $form-feedback-invalid-color, $ngx-chips-encapsulated);
+
+    @each $color, $value in $theme-colors {
+      @if $color != primary {
+        @if ($ngx-chips-encapsulated) {
+          :host ::ng-deep .ngx-chips-#{$color} { @include ngx-chips-variant(if($color=='dark', $white, $value)); }
+        } @else {
+          .ngx-chips-#{$color} { @include ngx-chips-variant(if($color=='dark', $white, $value)); }
+        }
+      }
+    }
+
+    @include feature-rtl-style {
+      #{$parent} .ng2-tag-input {
+        tag,
+        .ng2-tag-input__text-input {
+          margin: $ngx-chips-tag-spacer 0 0 $ngx-chips-tag-spacer;
+        }
+      }
+    }
+  }
+}

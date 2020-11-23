@@ -1,59 +1,66 @@
-<div class="wrapper wrapper-full-page">
-  <div class="page-header login-page header-filter" filter-color="black"
-    style="background-image: url('./assets/img/lock.jpg'); background-size: cover; background-position: top center;">
-    <!--   you can change the color of the filter page using: data-color="blue | purple | green | orange | red | rose " -->
-    <div class="container">
-      <div class="row">
-        <div class="col-lg-4 col-md-6 col-sm-6 ml-auto mr-auto">
-          <form class="form" [formGroup]="formLogin">
-            <div class="card card-login card-hidden">
-              <div class="card-header card-header-uft text-center">
-                <h4 class="card-title">Login</h4>
-              </div>
-              <div class="card-body ">
-                <span class="bmd-form-group"
-                  [ngClass]="{ 'custom-is-invalid': formLogin.controls['usuario'].touched && formLogin.controls['usuario'].invalid }">
-                  <div class="input-group">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                        <i class="material-icons">face</i>
-                      </span>
+<div class="authentication-wrapper authentication-2 ui-bg-cover ui-bg-overlay-container px-4"
+    style="background-image: url('assets/img/bg/16.jpg');">
+    <div class="ui-bg-overlay bg-dark opacity-25"></div>
+
+    <div class="authentication-inner py-5">
+
+        <div class="card">
+            <div class="py-4 px-5">
+                <!-- Logo -->
+                <div class="d-flex justify-content-center align-items-center pb-2 mb-2">
+                    <div class="w-100 position-relative text-center">
+                        <img src="assets/img/natura/logo-sm.png" style="max-height: 150px;" class="img-fluid">
                     </div>
-                    <input type="text" class="form-control" formControlName="usuario" name="usuario"
-                      placeholder="Email" />
-                  </div>
-                  <!-- <span class="custom-error">
-                    <p *ngIf="formLogin.controls['usuario'].errors?.required">
-                      Obligatorio
-                    </p>
-                  </span> -->
-                </span>
-                <span class="bmd-form-group "
-                  [ngClass]="{ 'custom-is-invalid': formLogin.controls['clave'].touched && formLogin.controls['clave'].invalid }">
-                  <div class="input-group ">
-                    <div class="input-group-prepend">
-                      <span class="input-group-text">
-                        <i class="material-icons">lock_outline</i>
-                      </span>
+                </div>
+                <!-- / Logo -->
+
+                <!-- <h5 class="text-center text-muted font-weight-normal mb-4">CRM NATURA</h5> -->
+
+                <!-- Form -->
+                <form [formGroup]="formularioLogin" class="my-3">
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input formControlName="email" name="email" (keydown.enter)="login()" type="input"
+                            [ngClass]="{'is-invalid': formularioLogin.controls['email'].touched && formularioLogin.controls['email'].invalid}"
+                            class="form-control">
+                        <small class="invalid-feedback">
+                            <p
+                                *ngIf="formularioLogin.controls['email'].errors?.required && formularioLogin.controls['email'].touched">
+                                Campo obligatorio
+                            </p>
+                        </small>
                     </div>
-                    <input type="password" class="form-control " (keyup.enter)="login()" formControlName="clave"
-                      name="clave" placeholder="Clave" />
-                  </div>
-                  <!--  <span class="custom-error">
-                    <p *ngIf="formLogin.controls['clave'].errors?.required">
-                      Obligatorio
-                    </p>
-                  </span> -->
-                </span>
-              </div>
-              <div class="card-footer justify-content-center">
-                <button type="button" mat-button (click)="login()"
-                  class="btn btn-primary mt-3 py-2 btn-lg">Ingresar</button>
-              </div>
+                    <div class="form-group">
+                        <label class="form-label d-flex justify-content-between align-items-end">
+                            <div>Clave</div>
+                            <!-- <a [routerLink]="['/login/recover-password']" class="d-block small">
+                                ¿Olvidaste tu clave?
+                            </a> -->
+                        </label>
+                        <input formControlName="password" name="password" type="password" (keydown.enter)="login()"
+                            class="form-control"
+                            [ngClass]="{'is-invalid': formularioLogin.controls['password'].touched && formularioLogin.controls['password'].invalid}">
+                        <small class="invalid-feedback">
+                            <p
+                                *ngIf="formularioLogin.controls['password'].errors?.required  && formularioLogin.controls['password'].touched">
+                                Campo obligatorio
+                            </p>
+                        </small>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center m-0 ">
+                        <button type="button" class="btn btn-natura mx-auto" [ngClass]="{'disabled': loading}"
+                            (click)="login()">Ingresar</button>
+                    </div>
+                </form>
+                <!-- / Form -->
+
             </div>
-          </form>
+            <!-- <div class="card-footer py-3 px-4 px-sm-5">
+                <div class="text-center text-muted">
+                    Don't have an account yet? <a href="javascript:void(0)">Sign Up</a>
+                </div>
+            </div> -->
         </div>
-      </div>
+
     </div>
-  </div>
 </div>

@@ -1,0 +1,41 @@
+<sidenav [orientation]="orientation" [ngClass]="getClasses()">
+
+  <!-- Brand demo (see src/demo.css) -->
+  <div class="app-brand demo" *ngIf="orientation !== 'horizontal'">
+    <span class="app-brand-logo">
+      <img src="assets/img/natura/logo-sm.png" alt="" height="60px">
+    </span>
+    <a routerLink="/" class="app-brand-text demo sidenav-text font-weight-normal ml-3">El Desquite</a>
+    <a href="javascript:void(0)" class="layout-sidenav-toggle sidenav-link text-large ml-auto"
+      (click)="toggleSidenav()">
+      <i class="ion ion-md-menu align-middle"></i>
+    </a>
+  </div>
+  <div class="sidenav-divider mt-0" *ngIf="orientation !== 'horizontal'"></div>
+
+  <!-- Links -->
+  <div class="sidenav-inner" [ngClass]="{ 'py-1': orientation !== 'horizontal' }">
+
+    <ng-container *ngFor="let menuitem of menuItems">
+
+      <sidenav-divider class="mb-1" *ngIf="menuitem.type === 'divider'"></sidenav-divider>
+
+      <sidenav-router-link *ngIf="menuitem.type === 'link'" [icon]="menuitem.icontype" [route]="menuitem.path"
+        [active]="isActive(menuitem.path)">
+        {{ menuitem.title }}
+      </sidenav-router-link>
+
+      <sidenav-menu *ngIf="menuitem.type === 'sub'" [icon]="menuitem.icontype" [text]="menuitem.title"
+        [active]="isMenuActive(menuitem.path)" [open]="isMenuOpen(menuitem.path)">
+        <sidenav-router-link *ngFor="let childitem of menuitem.children" [route]="[menuitem.path, childitem.path]"
+          [active]="isActive([menuitem.path, childitem.path])">
+          {{ childitem.title }}
+        </sidenav-router-link>
+      </sidenav-menu>
+
+    </ng-container>
+
+
+
+  </div>
+</sidenav>

@@ -1,10 +1,10 @@
-
 import { AuthEffects } from './auth.effects';
-import { UsuarioEffects } from './usuario.effects'
+import { UsuarioEffects } from './usuario.effects';
+
 
 export const appEffect: Array<any> = [
     AuthEffects,
-    UsuarioEffects
+    UsuarioEffects,
 ];
 
 export * from './auth.effects';

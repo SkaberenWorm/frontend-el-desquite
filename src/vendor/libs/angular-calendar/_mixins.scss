@@ -1,0 +1,39 @@
+@mixin angular-calendar-event-variant($parent, $background) {
+  $parent: if($parent != null, '.cal-event-#{$parent}.cal-event, .cal-event-#{$parent} .cal-event', '.cal-event');
+
+  #{$parent} {
+    background: $background !important;
+  }
+
+  .cal-week-view,
+  .cal-day-view {
+    #{$parent} {
+      background: rgba($background, .15) !important;
+    }
+  }
+}
+
+@mixin angular-calendar-theme($background, $color: null) {
+  $color: if($color, $color, yiq($background));
+
+  @include angular-calendar-event-variant(null, $background);
+
+  .cal-month-view .cal-day-badge {
+    background: $background !important;
+    color: $color !important;
+  }
+
+  .cal-month-view .cal-day-cell.cal-today,
+  .cal-week-view .cal-header.cal-today {
+    background: rgba($background, .05) !important;
+  }
+
+  .cal-month-view .cal-cell.cal-has-events.cal-open {
+    background: rgba($background, .15) !important;
+  }
+
+  .cal-day-view .cal-all-day-event {
+    background: rgba($background, .15) !important;
+    border-color: rgba($background, .15) !important;
+  }
+}

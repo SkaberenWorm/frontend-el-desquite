@@ -1,0 +1,40 @@
+$enable-rtl-support: true;
+$enable-light-style: true;
+$enable-material-style: true;
+$enable-dark-style: true;
+
+@mixin feature-ltr($as-child: true) {
+  @if $enable-rtl-support {
+    @if $as-child {
+      html:not([dir=rtl]) & { @content; }
+    } @else {
+      html:not([dir=rtl]) { @content; }
+    }
+  } @else {
+    @content;
+  }
+}
+
+@mixin feature-ltr-style() {
+  @if $enable-rtl-support {
+    &:not([dir=rtl]) { @content; }
+  } @else {
+    @content;
+  }
+}
+
+@mixin feature-rtl($as-child: true) {
+  @if $enable-rtl-support {
+    @if $as-child {
+      [dir=rtl] & { @content; }
+    } @else {
+      [dir=rtl] { @content; }
+    }
+  }
+}
+
+@mixin feature-rtl-style() {
+  @if $enable-rtl-support {
+    &[dir=rtl] { @content; }
+  }
+}

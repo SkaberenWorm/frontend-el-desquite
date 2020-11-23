@@ -1,15 +1,28 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { CommonsServiceModule } from 'src/app/commons/commons-service.module';
+import { SidenavModule } from 'src/vendor/libs/sidenav/sidenav.module';
 
+import { AdminIndexComponent } from './admin-index/admin-index.component';
 import { AdminRoutingModule } from './admin-routing.module';
-import { AdminIndexComponent } from './administracion/admin-index/admin-index.component';
 import { AdministracionComponent } from './administracion/administracion.component';
 
 @NgModule({
-  declarations: [AdministracionComponent, AdminIndexComponent],
+  declarations: [
+    AdminIndexComponent,
+    AdministracionComponent,
+  ],
   imports: [
     CommonModule,
-    AdminRoutingModule
+    AdminRoutingModule,
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    SidenavModule,
+    NgbDropdownModule,
+    CommonsServiceModule,
   ]
 })
 export class AdminModule { }

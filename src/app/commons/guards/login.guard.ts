@@ -1,6 +1,7 @@
 import { Injectable } from '@angular/core';
-import { CanActivate, Router, ActivatedRouteSnapshot, RouterStateSnapshot, CanLoad } from '@angular/router';
-import { Observable, of } from 'rxjs';
+import { CanActivate, CanLoad, Router } from '@angular/router';
+import { Observable } from 'rxjs';
+
 import { AuthenticationService } from '../services/authentication.service';
 
 
@@ -12,15 +13,17 @@ export class LoginGuard implements CanActivate, CanLoad {
     public router: Router
   ) { }
 
-  canActivate(
-    next: ActivatedRouteSnapshot,
-    state: RouterStateSnapshot): Observable<boolean> | Promise<boolean> | boolean {
-    //console.log("canActivate");
+  canActivate(): Observable<boolean> | Promise<boolean> | boolean {
     return this._auth.isLogin();
   }
-  canLoad() {
-    //console.log('canload');
-    return this._auth.isLogin();
 
+  canLoad() {
+    if (this._auth.isLogin()) {
+      return true;
+    } else {
+      console.log('LoginGuard - logout()');
+      this._auth.logout();
+      return false;
+    }
   }
 }

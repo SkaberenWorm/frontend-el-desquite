@@ -1,23 +1,22 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-
-import { LoginRoutingModule } from './login-routing.module';
-import { LoginIndexComponent } from './login-index/login-index.component';
-import { LoginService } from './login.service';
-import { HttpClientModule } from '@angular/common/http';
-import { ReactiveFormsModule } from '@angular/forms';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CommonsServiceModule } from 'src/app/commons/commons-service.module';
-import { Ng2Rut } from 'ng2-rut';
+
+import { LoginIndexComponent } from './login-index/login-index.component';
+import { LoginRoutingModule } from './login-routing.module';
+
+
 @NgModule({
   declarations: [LoginIndexComponent],
   imports: [
     CommonModule,
     LoginRoutingModule,
-    HttpClientModule,
+    FormsModule,
+    NgbModule,
     ReactiveFormsModule,
-    CommonsServiceModule,
-    Ng2Rut
-  ],
-  providers: [LoginService]
+    CommonsServiceModule
+  ]
 })
 export class LoginModule { }

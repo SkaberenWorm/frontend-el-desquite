@@ -1,42 +1,44 @@
-import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
-import { AuthenticationService } from './services/authentication.service';
 import { HTTP_INTERCEPTORS, HttpClientModule } from '@angular/common/http';
+import { NgModule } from '@angular/core';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { NgSelectModule } from '@ng-select/ng-select';
+import { MultiselectDropdownModule } from 'angular-2-dropdown-multiselect';
+import { SidenavModule } from 'src/vendor/libs/sidenav/sidenav.module';
 
-import { TokenInterceptor } from './interceptors/token.interceptor';
-import { JwtInterceptor } from './interceptors/jwt.interceptor';
-
-import { LoginGuard } from './guards/login.guard';
-import { RolAdminGuard } from './guards/rol-admin.guard';
+import { MultiSelectRolActivoComponent } from './components/multi-select-rol-activo/multi-select-rol-activo.component';
+import {
+  SelectAllUsuariosLiderActivosComponent,
+} from './components/select-all-usuarios-lider-activos/select-all-usuarios-lider-activos.component';
 import { AuthGuard } from './guards/auth.guard';
-import { Util } from './util/util';
+import { LoginGuard } from './guards/login.guard';
+import { RolAdminLiderGuard } from './guards/rol-admin-lider.guard';
+import { RolAdminGuard } from './guards/rol-admin.guard';
+import { JwtInterceptor } from './interceptors/jwt.interceptor';
+import { TokenInterceptor } from './interceptors/token.interceptor';
+import { AuthenticationService } from './services/authentication.service';
+import { UtilAlert } from './util/util.alert';
 import { UtilFormating } from './util/util.formating';
 import { UtilValidation } from './util/util.validation';
-import { BlockUIModule } from 'ng-block-ui';
-import { BlockUIHttpModule } from 'ng-block-ui/http';
-import { NgbPaginationModule, NgbModalModule } from '@ng-bootstrap/ng-bootstrap';
-import { NgxPaginationModule } from 'ngx-pagination';
-import { MatSelectModule, MatInputModule } from '@angular/material';
-import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { RolAdminOrVendedorGuard } from './guards/rol-admin-or-vendedor.guard';
-import { UtilAlert } from './util/util-alert';
-import { UsuarioService } from './services/usuario.service';
-import { ProductoService } from './services/producto.service';
+
 @NgModule({
-  declarations: [],
+  declarations: [
+    MultiSelectRolActivoComponent,
+    SelectAllUsuariosLiderActivosComponent,
+  ],
   imports: [
     CommonModule,
     HttpClientModule,
-    BlockUIModule,
-    BlockUIHttpModule,
-    NgbPaginationModule,
-    NgbModalModule,
-    MatSelectModule,
-    MatInputModule,
-    NgbModule
+    NgbDropdownModule,
+    SidenavModule,
+    NgbModule,
+    FormsModule,
+    ReactiveFormsModule,
+    MultiselectDropdownModule,
+    NgSelectModule
   ],
-  providers: [
-    AuthenticationService,
+  providers: [AuthenticationService,
     {
       provide: HTTP_INTERCEPTORS,
       useClass: TokenInterceptor,
@@ -47,17 +49,18 @@ import { ProductoService } from './services/producto.service';
       useClass: JwtInterceptor,
       multi: true
     },
-    LoginGuard,
-    RolAdminGuard,
-    RolAdminOrVendedorGuard,
-    AuthGuard,
-    Util,
     UtilFormating,
     UtilValidation,
     UtilAlert,
-    UsuarioService,
-    ProductoService,
+
+    LoginGuard,
+    RolAdminGuard,
+    AuthGuard,
+    RolAdminLiderGuard,
   ],
-  exports: []
+  exports: [
+    MultiSelectRolActivoComponent,
+    SelectAllUsuariosLiderActivosComponent,
+  ]
 })
-export class CommonsServiceModule {}
+export class CommonsServiceModule { }
