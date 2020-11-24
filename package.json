@@ -4,13 +4,19 @@
   "private": true,
   "scripts": {
     "ng": "ng",
-    "start": "node --max-old-space-size=4028 node_modules/@angular/cli/bin/ng serve",
+    "start": "node server.js",
+    "ng-start": "node --max-old-space-size=4028 node_modules/@angular/cli/bin/ng serve",
     "build": "ng build --extractCss=true",
     "prod": "ng build --prod --outputHashing=media",
     "prod:hashed": "ng build --prod=true",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "heroku-postbuild": "ng build --prod"
+  },
+  "engines": {
+    "node": "12.18.0",
+    "npm": "6.14.8"
   },
   "dependencies": {
     "@angular/animations": "~11.0.2",
@@ -41,6 +47,7 @@
     "core-js": "~2.6.5",
     "custom-event-polyfill": "^1.0.7",
     "date-fns": "2.9.0",
+    "express": "^4.17.1",
     "file-saver": "^2.0.2",
     "get-root-node-polyfill": "^1.0.0",
     "hammerjs": "~2.0.8",
@@ -76,6 +83,7 @@
     "ngx-toastr": "~12.0.0",
     "nouislider": "~14.2.0",
     "numeral": "~2.0.6",
+    "path": "^0.12.7",
     "plyr": "~3.5.6",
     "quill": "~1.3.6",
     "rxjs": "~6.5.3",

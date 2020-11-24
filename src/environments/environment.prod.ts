@@ -1,5 +1,5 @@
 export const environment = {
   production: true,
-  auth_url: 'http://51.79.52.161:8012/',
-  backend_url: 'http://51.79.52.161:8012/',
+  auth_url: 'https://el-desquite-backend.herokuapp.com/',
+  backend_url: 'https://el-desquite-backend.herokuapp.com/',
 };

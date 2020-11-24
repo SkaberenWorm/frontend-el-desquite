@@ -4,6 +4,7 @@ import { CommonsServiceModule } from 'src/app/commons/commons-service.module';
 
 import { AdministracionRoutingModule } from './administracion-routing.module';
 import { ProductoComponent } from './producto/producto.component';
+import { RoleComponent } from './role/role.component';
 import { UsuarioComponent } from './usuario/usuario.component';
 
 
@@ -11,6 +12,7 @@ import { UsuarioComponent } from './usuario/usuario.component';
   declarations: [
     UsuarioComponent,
     ProductoComponent,
+    RoleComponent,
   ],
   imports: [
     CommonModule,

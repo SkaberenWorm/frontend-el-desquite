@@ -1,0 +1,90 @@
+<div class="card ">
+  <div class="card-header">
+    <div class="row">
+      <div class="col-sm-2 col-4">
+        <button type="button" class="btn mt-2 btn-sm btn-natura" (click)="nuevo()">
+          <i class="ion ion-ios-add"></i>&nbsp;Nuevo rol
+        </button>
+      </div>
+      <div class="col-sm-8 col-8 text-center">
+        <h3 class="card-title mb-0 pt-2">
+          Roles
+        </h3>
+      </div>
+      <div class="col-sm-2 text-right ml-auto mx-125">
+        <div class="form-group">
+          <select #pageSizeSelect class="custom-select" (change)="changePageSize(pageSizeSelect.value)"
+            value="{{ pageSize }}">
+            <option value="{{ totalElements }}">Todos</option>
+            <option value="15">15 registros</option>
+            <option value="25">25 registros</option>
+            <option value="50">50 registros</option>
+            <option value="100">100 registros</option>
+          </select>
+        </div>
+      </div>
+    </div>
+  </div>
+  <!-- <h5 class="card-description">This information will let us know more about you.</h5> -->
+  <div class="card-body">
+    <table class="table table-sm table-inverse table-responsive-xl" matSort (matSortChange)="sortData($event)">
+      <thead class="thead-inverse">
+        <tr>
+          <th class="mx-25"><strong> #</strong> </th>
+          <th mat-sort-header="nombre" class="minx-150">Nombre</th>
+          <th mat-sort-header="descripcion" class="minx-150">Descripcion</th>
+          <th>Privilegios</th>
+          <th mat-sort-header="activo">Estado</th>
+          <th class="minx-150 mx-150">
+
+          </th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngIf="listadoRoles.length == 0 ">
+          <td colspan="100%" class="text-center py-3">
+            No se encontraron registros
+          </td>
+        </tr>
+        <tr *ngFor="let role of listadoRoles; let index = index">
+          <td>
+            <strong> {{index + 1 + pageSize * page - pageSize }}</strong>
+          </td>
+          <td> {{role.nombre}} </td>
+          <td>{{role.descripcion}}</td>
+          <td>
+            <span *ngFor="let provilegio of role.privilegios" class="badge badge-secondary"
+              style="margin-bottom: 1px; margin-right: 2px;">{{provilegio.nombre}}</span>
+          </td>
+          <td>
+            <span *ngIf="role.activo" class="badge badge-success rounded-pill" style="margin-bottom: 1px;">Activo</span>
+            <span *ngIf="!role.activo" class="badge badge-danger rounded-pill"
+              style="margin-bottom: 1px;">Inactivo</span>
+          </td>
+          <td class="text-left">
+            <div class="btn-group btn-group-xs my-0" role="group">
+              <button type="button" class="btn btn-primary btn-sm" (click)="editar(role)">Editar</button>
+              <button type="button" [ngClass]="{'btn-danger': role.activo, 'btn-success': !role.activo}"
+                class="btn  btn-sm" mwlConfirmationPopover popoverTitle="¿Está seguro(a)?"
+                popoverMessage="Desea {{role.activo?'desactivar':'activar'}} el role" placement="top"
+                (confirm)="changeState(role.id)" (cancel)="cancel()">
+                <span *ngIf="role.activo">Desactivar</span>
+                <span *ngIf="!role.activo">Activar</span>
+              </button>
+            </div>
+          </td>
+        </tr>
+      </tbody>
+    </table>
+    <div class="row">
+      <ngb-pagination class="mx-auto mt-3" *ngIf="listadoRoles.length < totalElements " [(page)]="page "
+        [pageSize]="pageSize " (pageChange)="listarRoles() " [collectionSize]="totalElements " [maxSize]="5 "
+        [rotate]="true " [boundaryLinks]="true ">
+      </ngb-pagination>
+    </div>
+  </div>
+
+  <!-- <div class="card-footer">
+    <div class="clearfix"></div>
+  </div> -->
+</div>

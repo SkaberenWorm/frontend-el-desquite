@@ -54,13 +54,14 @@ export class LayoutSidenavComponent implements AfterViewInit, OnInit {
       collapse: 'settings',
       children: [
         { path: 'usuarios', title: 'Usuarios' },
+        { path: 'roles', title: 'Roles' },
         { path: 'productos', title: 'Productos' },
       ]
     }
 
   ];
 
-  private menuLider: RouteInfo[] = [
+  private menuVendedor: RouteInfo[] = [
     {
       path: '/admin',
       title: 'Inicio',
@@ -110,8 +111,8 @@ export class LayoutSidenavComponent implements AfterViewInit, OnInit {
   ngOnInit() {
     if (this._authenticationService.esRol('ROLE_ADMIN')) {
       ROUTES = this.menuAdmin;
-    } else if (this._authenticationService.esRol('ROLE_LIDER')) {
-      ROUTES = this.menuLider;
+    } else if (this._authenticationService.esRol('ROLE_VENDEDOR')) {
+      ROUTES = this.menuVendedor;
     } else {
       this._authenticationService.logout();
     }
