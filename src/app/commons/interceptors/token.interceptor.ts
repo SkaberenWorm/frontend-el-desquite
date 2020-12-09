@@ -13,7 +13,15 @@ export class TokenInterceptor implements HttpInterceptor {
 
   intercept(request: HttpRequest<any>, next: HttpHandler): Observable<HttpEvent<any>> {
 
-    if (!(request.url.indexOf('create-password') === -1)) {
+    if (!(request.url.indexOf('usuario-token') === -1)) {
+      return next.handle(request);
+    }
+
+    if (!(request.url.indexOf('login') === -1)) {
+      return next.handle(request);
+    }
+
+    if (!(request.url.indexOf('two-factor/validate/key') === -1)) {
       return next.handle(request);
     }
 

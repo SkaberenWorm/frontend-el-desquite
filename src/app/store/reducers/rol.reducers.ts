@@ -14,7 +14,6 @@ export interface RolState {
     saving: boolean;
     saved: boolean;
     deleted: boolean;
-    tokenCreado: boolean;
 }
 
 export const initialState: RolState = {
@@ -27,7 +26,6 @@ export const initialState: RolState = {
     saving: false,
     saved: false,
     deleted: false,
-    tokenCreado: false,
 }
 const _usaurioReducer = createReducer(initialState,
     on(fromActions.listarRol, (state, { searchPagination }) => ({
@@ -39,7 +37,6 @@ const _usaurioReducer = createReducer(initialState,
         saved: false,
         deleted: false,
         error: null,
-        tokenCreado: false,
     })),
     on(fromActions.listarRolSuccess, (state, { listadoRoles }) => ({
         ...state,
@@ -60,7 +57,6 @@ const _usaurioReducer = createReducer(initialState,
         success: null,
         saved: false,
         deleted: false,
-        tokenCreado: false,
     })),
     on(fromActions.guardarRolSuccess, (state, { respuesta, mensaje }): RolState => ({
         ...state,
@@ -83,7 +79,6 @@ const _usaurioReducer = createReducer(initialState,
         success: null,
         saved: false,
         deleted: false,
-        tokenCreado: false,
     })),
     on(fromActions.actualizarRolSuccess, (state, { respuesta, mensaje }): RolState => ({
         ...state,
@@ -106,7 +101,6 @@ const _usaurioReducer = createReducer(initialState,
         success: null,
         saved: false,
         deleted: false,
-        tokenCreado: false,
     })),
     on(fromActions.buscarRolSuccess, (state, { rol }): RolState => ({
         ...state,
@@ -127,7 +121,6 @@ const _usaurioReducer = createReducer(initialState,
         success: null,
         saved: false,
         deleted: false,
-        tokenCreado: false,
     })),
     on(fromActions.cambiarEstadoRolSuccess, (state, { rol, mensaje }): RolState => ({
         ...state,

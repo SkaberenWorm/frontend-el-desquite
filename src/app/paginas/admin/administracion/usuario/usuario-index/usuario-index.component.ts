@@ -30,6 +30,9 @@ export class UsuarioIndexComponent implements OnInit, OnDestroy {
   private order = 'id';
   private direction = 'desc';
 
+  public saving = false;
+  public loading = false;
+
   constructor(
     private router: Router,
     private store: Store<AppState>,
@@ -43,6 +46,8 @@ export class UsuarioIndexComponent implements OnInit, OnDestroy {
     this.appService.pageTitle = 'Usuarios';
 
     this.subscriptionUsuario = this.store.select('usuario').subscribe(state => {
+      this.loading = state.loading;
+      this.saving = state.saving;
       this.searchPagination = state.searchPagination;
       if (!state.loading && state.listadoUsuarios != null) {
         this.listadoUsuarios = state.listadoUsuarios.content;
@@ -63,8 +68,8 @@ export class UsuarioIndexComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy(): void {
-    this.subscriptionUsuario.unsubscribe();
-    this.subscriptionSearch.unsubscribe();
+    this.subscriptionUsuario?.unsubscribe();
+    this.subscriptionSearch?.unsubscribe();
   }
 
   listarUsuarios() {

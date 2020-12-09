@@ -104,7 +104,7 @@ export class UsuarioFormComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy(): void {
-    this.subscriptionUsuario.unsubscribe();
+    this.subscriptionUsuario?.unsubscribe();
   }
 
   /**
@@ -140,7 +140,7 @@ export class UsuarioFormComponent implements OnInit, OnDestroy {
         this.toastr.warning('formulario inválido');
       }
     } else {
-      this.toastr.warning('El usuario ya se esta guardando');
+      this.toastr.warning('El usuario ya se esta guardando, favor espere...');
     }
   }
 

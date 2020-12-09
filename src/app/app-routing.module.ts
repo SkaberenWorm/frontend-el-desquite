@@ -13,6 +13,7 @@ const routes: Routes = [
 
   { path: 'login', component: LayoutBlankComponent, loadChildren: () => import('./paginas/login/login.module').then(m => m.LoginModule) },
   { path: 'cambiar-password', component: LayoutBlankComponent, loadChildren: () => import('./paginas/password/password.module').then(m => m.PasswordModule) },
+  { path: 'crear-password', component: LayoutBlankComponent, loadChildren: () => import('./paginas/password/password.module').then(m => m.PasswordModule) },
   { path: 'admin', canLoad: [LoginGuard], component: Layout2Component, loadChildren: () => import('./paginas/admin/admin.module').then(m => m.AdminModule) },
 
 

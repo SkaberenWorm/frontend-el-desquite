@@ -1,7 +1,7 @@
+import { Action, createReducer, on } from '@ngrx/store';
 import { RespuestaLogin } from 'src/app/commons/interfaces/respuesta-login-interface';
+
 import * as fromActions from '../actions/auth.actions';
-import { createReducer, on } from '@ngrx/store';
-import { Action } from '@ngrx/store';
 
 export interface AuthState {
   loading: boolean;
@@ -26,7 +26,8 @@ const initState: AuthState = {
 const _authReducer = createReducer(initState,
   on(fromActions.autenticar, (state, { identificacion }): AuthState => ({
     ...state,
-    user: identificacion.usuario
+    user: identificacion.usuario,
+    loading: true,
   })),
   on(fromActions.autenticarSuccess, (state, { respuesta }): AuthState => ({
     ...state,

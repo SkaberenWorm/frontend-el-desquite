@@ -25,15 +25,31 @@ export class ProductoService {
 		return this.http.post<ResultadoProc<IPaginacion<ProductoModel>>>(`${this.urlBase}/page-with-filters`, searchPagination);
 	}
 
+	//TODO: SOLO DE PRUEBA PARA LA EXTENSION
+	public findAllPaginatedWithSearch(searchPagination: SearchPagination<string>): Observable<ResultadoProc<IPaginacion<ProductoModel>>> {
+		return this.http.post<ResultadoProc<IPaginacion<ProductoModel>>>(`${this.urlBase}/page-with-filters`, searchPagination);
+	}
+
 	/**
-	   * Guarda o actualiza un producto
+	   * Guarda un producto
 	   * 
 	   * @param producto (Entidad ProductoModel)
-	   * @return ProductoModel guardado/actualizado
+	   * @return ProductoModel guardado
 	   */
 	public save(producto: ProductoModel): Observable<ResultadoProc<ProductoModel>> {
 		return this.http.post<ResultadoProc<ProductoModel>>(`${this.urlBase}`, producto);
 	}
+
+	/**
+	   * Actualiza un producto
+	   * 
+	   * @param producto (Entidad ProductoModel)
+	   * @return ProductoModel actualizado
+	   */
+	public update(producto: ProductoModel): Observable<ResultadoProc<ProductoModel>> {
+		return this.http.put<ResultadoProc<ProductoModel>>(`${this.urlBase}`, producto);
+	}
+
 
 	/**
 	   * Busca un producto por su ID.

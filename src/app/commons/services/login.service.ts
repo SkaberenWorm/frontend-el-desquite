@@ -1,10 +1,20 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
+import { Observable } from 'rxjs';
 import { RespuestaLogin } from 'src/app/commons/interfaces/respuesta-login-interface';
 import { AuthenticationService } from 'src/app/commons/services/authentication.service';
 import { environment } from 'src/environments/environment';
 
+import { ResultadoProc } from '../interfaces/resultado-proc.interface';
+import { UsuarioModel } from '../models/usuario.model';
+
+/**
+ * Pasos para authenticarse <br>
+ * 1. Verificar credenciales login()
+ * 2. Si tiene 2FA Verificar el codigo de autorización
+ * 3. Logearse y obtener token
+ */
 @Injectable({
   providedIn: 'root'
 })
@@ -14,7 +24,25 @@ export class LoginService {
     public router: Router,
     public authService: AuthenticationService) { }
 
-  public login(username: string, password: string) {
+  public login(username: string, password: string): Observable<ResultadoProc<UsuarioModel>> {
+    const url = `${environment.auth_url}login`;
+    let body = {
+      "usuario": username,
+      "password": password,
+    }
+    return this.http.post<ResultadoProc<UsuarioModel>>(url, body);
+  }
+
+  public verificarTwoFactor(username: string, code: string): Observable<ResultadoProc<boolean>> {
+    const url = `${environment.auth_url}two-factor/validate/key`;
+    let body = {
+      "usuario": username,
+      "code": code,
+    }
+    return this.http.post<ResultadoProc<boolean>>(url, body);
+  }
+
+  public loginOauth(username: string, password: string) {
     const url = `${environment.auth_url}oauth/token`;
     let bodyH: HttpParams;
 

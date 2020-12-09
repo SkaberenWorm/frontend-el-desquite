@@ -10,6 +10,7 @@ export class UsuarioModel {
   public activo = false;
   public nombreCompleto = '';
   public roles = new Array<RolModel>();
+  public using2FA = false;
 
   constructor(fields?: {
     id?: number;
@@ -19,6 +20,7 @@ export class UsuarioModel {
     activo?: boolean;
     nombreCompleto?: string;
     roles?: Array<RolModel>;
+    using2FA?: boolean;
   }) {
     if (fields) {
       Object.assign(this, fields);

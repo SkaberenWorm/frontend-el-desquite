@@ -14,45 +14,80 @@
                 </div>
                 <!-- / Logo -->
 
-                <!-- <h5 class="text-center text-muted font-weight-normal mb-4">CRM NATURA</h5> -->
-
-                <!-- Form -->
-                <form [formGroup]="formularioLogin" class="my-3">
-                    <div class="form-group">
-                        <label class="form-label">Email</label>
-                        <input formControlName="email" name="email" (keydown.enter)="login()" type="input"
-                            [ngClass]="{'is-invalid': formularioLogin.controls['email'].touched && formularioLogin.controls['email'].invalid}"
-                            class="form-control">
-                        <small class="invalid-feedback">
-                            <p
-                                *ngIf="formularioLogin.controls['email'].errors?.required && formularioLogin.controls['email'].touched">
-                                Campo obligatorio
-                            </p>
-                        </small>
-                    </div>
-                    <div class="form-group">
-                        <label class="form-label d-flex justify-content-between align-items-end">
-                            <div>Clave</div>
-                            <!-- <a [routerLink]="['/login/recover-password']" class="d-block small">
+                <ng-container *ngIf="!visibleTwoFactorAuthentication; else elseTemplateLogin">
+                    <!-- Form -->
+                    <form [formGroup]="formularioLogin" class="my-3">
+                        <div class="form-group">
+                            <label class="form-label">Email</label>
+                            <input formControlName="email" name="email" (keydown.enter)="login()" type="input"
+                                [ngClass]="{'is-invalid': formularioLogin.controls['email'].touched && formularioLogin.controls['email'].invalid}"
+                                class="form-control">
+                            <small class="invalid-feedback">
+                                <p
+                                    *ngIf="formularioLogin.controls['email'].errors?.required && formularioLogin.controls['email'].touched">
+                                    Campo obligatorio
+                                </p>
+                            </small>
+                        </div>
+                        <div class="form-group">
+                            <label class="form-label d-flex justify-content-between align-items-end">
+                                <div>Clave</div>
+                                <!-- <a [routerLink]="['/login/recover-password']" class="d-block small">
                                 ¿Olvidaste tu clave?
                             </a> -->
-                        </label>
-                        <input formControlName="password" name="password" type="password" (keydown.enter)="login()"
-                            class="form-control"
-                            [ngClass]="{'is-invalid': formularioLogin.controls['password'].touched && formularioLogin.controls['password'].invalid}">
-                        <small class="invalid-feedback">
-                            <p
-                                *ngIf="formularioLogin.controls['password'].errors?.required  && formularioLogin.controls['password'].touched">
-                                Campo obligatorio
-                            </p>
-                        </small>
-                    </div>
-                    <div class="d-flex justify-content-between align-items-center m-0 ">
-                        <button type="button" class="btn btn-natura mx-auto" [ngClass]="{'disabled': loading}"
-                            (click)="login()">Ingresar</button>
-                    </div>
-                </form>
-                <!-- / Form -->
+                            </label>
+                            <input formControlName="password" name="password" type="password" (keydown.enter)="login()"
+                                class="form-control"
+                                [ngClass]="{'is-invalid': formularioLogin.controls['password'].touched && formularioLogin.controls['password'].invalid}">
+                            <small class="invalid-feedback">
+                                <p
+                                    *ngIf="formularioLogin.controls['password'].errors?.required  && formularioLogin.controls['password'].touched">
+                                    Campo obligatorio
+                                </p>
+                            </small>
+                        </div>
+                        <div class="d-flex justify-content-between align-items-center m-0 ">
+                            <button type="button" class="btn btn-natura mx-auto" [disabled]="loading" (click)="login()">
+                                <app-text-btn [loading]="loading" [pogressbar]="true" textLoaded="Ingresar"
+                                    textLoading="Ingresando">
+                                </app-text-btn>
+                            </button>
+                        </div>
+                    </form>
+                    <!-- / Form -->
+                </ng-container>
+                <ng-template #elseTemplateLogin>
+
+                    <!-- Form -->
+                    <form [formGroup]="formularioTwoFactor" class="my-3">
+                        <div class="form-group">
+                            <label class="form-label">Authentication code</label>
+                            <input formControlName="code" name="code" (keydown.enter)="verificarTwoFactor()"
+                                type="input" autocomplete="off"
+                                [ngClass]="{'is-invalid': formularioTwoFactor.controls['code'].touched && formularioTwoFactor.controls['code'].invalid}"
+                                class="form-control">
+                            <small class="invalid-feedback">
+                                <p
+                                    *ngIf="formularioTwoFactor.controls['code'].errors?.required && formularioTwoFactor.controls['code'].touched">
+                                    Campo obligatorio
+                                </p>
+                            </small>
+                        </div>
+
+                        <div class="d-flex justify-content-between align-items-center m-0 ">
+                            <button type="button" class="btn btn-natura mx-auto" [disabled]="loading"
+                                (click)="verificarTwoFactor()">
+                                <app-text-btn [loading]="loading" [pogressbar]="true" textLoaded="Verificar"
+                                    textLoading="Verificando">
+                                </app-text-btn>
+                            </button>
+                        </div>
+                    </form>
+                    <!-- / Form -->
+
+                </ng-template>
+
+
 
             </div>
             <!-- <div class="card-footer py-3 px-4 px-sm-5">

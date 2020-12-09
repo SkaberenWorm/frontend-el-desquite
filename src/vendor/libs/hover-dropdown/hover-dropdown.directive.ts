@@ -1,6 +1,6 @@
-import { Directive, ElementRef, Host, Self, Optional, OnDestroy, AfterViewInit, NgZone } from '@angular/core';
-import { Subscription } from 'rxjs';
+import { AfterViewInit, Directive, ElementRef, Host, NgZone, OnDestroy, Optional, Self } from '@angular/core';
 import { NgbDropdown } from '@ng-bootstrap/ng-bootstrap';
+import { Subscription } from 'rxjs';
 
 const TIMEOUT = 150;
 
@@ -15,7 +15,7 @@ export class HoverDropdownDirective implements OnDestroy, AfterViewInit {
   private subscription: Subscription;
   private listeners: any = {};
 
-  constructor(private el: ElementRef, private zone: NgZone, @Host() @Self() @Optional() private dropdown: NgbDropdown) {}
+  constructor(private el: ElementRef, private zone: NgZone, @Host() @Self() @Optional() private dropdown: NgbDropdown) { }
 
   ngAfterViewInit() {
     if (!this.dropdown) { return; }
@@ -66,7 +66,7 @@ export class HoverDropdownDirective implements OnDestroy, AfterViewInit {
     this.menu = null;
     this.listeners = null;
     this.el = null;
-    this.subscription.unsubscribe();
+    this.subscription?.unsubscribe();
     this.subscription = null;
   }
 

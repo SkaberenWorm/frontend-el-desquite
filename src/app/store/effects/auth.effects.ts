@@ -1,7 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Router } from '@angular/router';
 import { Actions, Effect, ofType } from '@ngrx/effects';
-import { Store } from '@ngrx/store';
 import { BlockUI, NgBlockUI } from 'ng-block-ui';
 import { of } from 'rxjs';
 import { catchError, map, switchMap } from 'rxjs/operators';
@@ -10,7 +8,6 @@ import { LoginService } from 'src/app/commons/services/login.service';
 import { UtilAlert } from 'src/app/commons/util/util.alert';
 
 import * as appActions from '../actions/auth.actions';
-import { AppState } from '../app.reducer';
 
 @Injectable()
 export class AuthEffects {
@@ -20,8 +17,6 @@ export class AuthEffects {
     private actions$: Actions,
     private loginService: LoginService,
     private authenticationService: AuthenticationService,
-    private _store: Store<AppState>,
-    private _router: Router,
     private _alert: UtilAlert,
   ) { }
 
@@ -31,7 +26,7 @@ export class AuthEffects {
     switchMap(data => {
       const identificacion: { usuario: string; clave: string; } = data['identificacion'];
       this.blockUIPage.start();
-      return this.loginService.login(identificacion.usuario, identificacion.clave).pipe(
+      return this.loginService.loginOauth(identificacion.usuario, identificacion.clave).pipe(
         map(resul => {
           this.blockUIPage.stop();
           if (resul['error']) {

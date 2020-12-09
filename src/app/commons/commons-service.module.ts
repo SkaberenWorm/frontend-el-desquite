@@ -11,6 +11,7 @@ import { MultiSelectRolActivoComponent } from './components/multi-select-rol-act
 import {
   SelectAllUsuariosLiderActivosComponent,
 } from './components/select-all-usuarios-lider-activos/select-all-usuarios-lider-activos.component';
+import { TextBtnComponent } from './components/text-btn/text-btn.component';
 import { AuthGuard } from './guards/auth.guard';
 import { LoginGuard } from './guards/login.guard';
 import { RolAdminLiderGuard } from './guards/rol-admin-lider.guard';
@@ -26,6 +27,7 @@ import { UtilValidation } from './util/util.validation';
   declarations: [
     MultiSelectRolActivoComponent,
     SelectAllUsuariosLiderActivosComponent,
+    TextBtnComponent,
   ],
   imports: [
     CommonModule,
@@ -61,6 +63,7 @@ import { UtilValidation } from './util/util.validation';
   exports: [
     MultiSelectRolActivoComponent,
     SelectAllUsuariosLiderActivosComponent,
+    TextBtnComponent
   ]
 })
 export class CommonsServiceModule { }

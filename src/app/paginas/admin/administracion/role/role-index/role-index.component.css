@@ -1,7 +1,3 @@
 :host ::ng-deep .confirm-btn-container {
     flex-basis: auto !important;
 }
-
-/* .ng-value.ng-star-inserted {
-    background-color: gray;
-} */

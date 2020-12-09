@@ -53,8 +53,12 @@
           <td> {{role.nombre}} </td>
           <td>{{role.descripcion}}</td>
           <td>
-            <span *ngFor="let provilegio of role.privilegios" class="badge badge-secondary"
-              style="margin-bottom: 1px; margin-right: 2px;">{{provilegio.nombre}}</span>
+            <ng-template *ngIf="role.privilegios != null && role.privilegios.length <= 5">
+              <span *ngFor="let provilegio of role.privilegios" class="badge badge-secondary"
+                style="margin-bottom: 1px; margin-right: 2px;">{{provilegio.nombre}}</span>
+            </ng-template>
+            <span *ngIf="role.privilegios != null && role.privilegios.length > 5" class="badge badge-secondary"
+              style="margin-bottom: 1px; margin-right: 2px;">{{role.privilegios.length}}&nbsp;privilegios</span>
           </td>
           <td>
             <span *ngIf="role.activo" class="badge badge-success rounded-pill" style="margin-bottom: 1px;">Activo</span>

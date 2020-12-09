@@ -65,12 +65,19 @@
           <td class="text-left">
             <div class="btn-group btn-group-xs my-0" role="group">
               <button type="button" class="btn btn-primary btn-sm" (click)="editar(usuario.id)">Editar</button>
-              <button type="button" [ngClass]="{'btn-danger': usuario.activo, 'btn-success': !usuario.activo}"
-                class="btn  btn-sm" mwlConfirmationPopover popoverTitle="¿Está seguro(a)?"
-                popoverMessage="Desea {{usuario.activo?'desactivar':'activar'}} el usuario" placement="top"
-                (confirm)="changeState(usuario.id)" (cancel)="cancel()">
-                <span *ngIf="usuario.activo">Desactivar</span>
-                <span *ngIf="!usuario.activo">Activar</span>
+              <button type="button" class="btn btn-sm" [class.btn-danger]="usuario.activo"
+                [class.btn-success]="!usuario.activo" [disabled]="saving" popoverTitle="¿Está seguro(a)?"
+                mwlConfirmationPopover popoverMessage="Desea {{usuario.activo?'desactivar':'activar'}} el usuario"
+                placement="top" (confirm)="changeState(usuario.id)" (cancel)="cancel()">
+                <span *ngIf="usuario.activo">
+                  <app-text-btn [loading]="saving" [pogressbar]="false" textLoaded="Desactivar"
+                    textLoading="Desactivando">
+                  </app-text-btn>
+                </span>
+                <span *ngIf="!usuario.activo">
+                  <app-text-btn [loading]="saving" [pogressbar]="false" textLoaded="Activar" textLoading="Activando">
+                  </app-text-btn>
+                </span>
               </button>
             </div>
           </td>

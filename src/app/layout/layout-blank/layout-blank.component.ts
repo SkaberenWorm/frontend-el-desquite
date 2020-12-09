@@ -24,9 +24,7 @@ export class LayoutBlankComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    if (this._subscriptionOuth != null) {
-      this._subscriptionOuth.unsubscribe();
-    }
+    this._subscriptionOuth?.unsubscribe();
   }
 
   ngOnInit() {

@@ -11,11 +11,13 @@ import { CommonsServiceModule } from 'src/app/commons/commons-service.module';
 
 import { RoleIndexComponent } from './role-index/role-index.component';
 import { RoleRoutingModule } from './role-routing.module';
+import { RoleFormComponent } from './role-form/role-form.component';
 
 
 @NgModule({
   declarations: [
-    RoleIndexComponent
+    RoleIndexComponent,
+    RoleFormComponent
   ],
   imports: [
     CommonModule,

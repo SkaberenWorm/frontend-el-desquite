@@ -62,8 +62,8 @@ export class RoleIndexComponent implements OnInit, OnDestroy {
 
 
   ngOnDestroy(): void {
-    this.subscriptionRole.unsubscribe();
-    this.subscriptionSearch.unsubscribe();
+    this.subscriptionRole?.unsubscribe();
+    this.subscriptionSearch?.unsubscribe();
   }
 
   listarRoles() {
@@ -82,7 +82,7 @@ export class RoleIndexComponent implements OnInit, OnDestroy {
   }
 
   editar(rol: RolModel) {
-    console.log("rol", rol);
+    this.router.navigate(['/admin/administracion/roles', rol.id, 'edit']);
   }
 
   nuevo() {

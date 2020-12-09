@@ -1307,9 +1307,29 @@ button.toast-close-button {
   color: #eb6619 !important;
 }
 
+.text-normal {
+  color: rgb(95, 97, 100) !important;
+}
+
 .btn.btn-natura {
   background-color: #eb6619;
   color: white;
+}
+
+.switcher-input.natura:checked~.switcher-indicator.natura {
+  background: rgb(242, 152, 105) !important;
+}
+
+.switcher-input.natura:checked~.switcher-indicator.natura::after {
+  background: #eb6619;
+}
+
+.switcher-indicator.natura::after {
+  background-color: white;
+}
+
+.switcher-indicator.natura::before {
+  background-color: transparent;
 }
 
 li.page-item.active, li.page-item.active>a {

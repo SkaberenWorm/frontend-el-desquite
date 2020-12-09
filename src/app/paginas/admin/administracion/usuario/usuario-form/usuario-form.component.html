@@ -45,10 +45,11 @@
         <div class="col-sm-12" *ngIf="isAdmin && usuario.id != 0">
           <div class="form-group">
             <label class="form-label">Password</label>
-            <button type="button" style="display: block;" class="btn btn-natura btn-sm mt-2" (click)="createToken()">
-              <span *ngIf="creandoToken" class="mr-2 spinner-border spinner-border-sm"></span>
-              <span *ngIf="creandoToken">Generando token</span>
-              <span *ngIf="!creandoToken ">Generar token y notificar al correo</span>
+            <button type="button" style="display: block;" class="btn btn-natura btn-sm mt-2" (click)="createToken()"
+              [disabled]="creandoToken">
+              <app-text-btn [loading]="creandoToken" [pogressbar]="true"
+                textLoaded="Generar token y notificar al correo" textLoading="Generando token">
+              </app-text-btn>
             </button>
           </div>
         </div>
@@ -71,12 +72,14 @@
 
       </div>
       <div class="col text-right">
-        <button type="button" class="btn btn-primary btn-sm" (click)="guardar()">
-          <span *ngIf="saving" class="mr-2 spinner-border spinner-border-sm"></span>
-          <span *ngIf="saving && isEdit">actualizando</span>
-          <span *ngIf="saving && !isEdit">guardando</span>
-          <span *ngIf="!saving && isEdit">actualizar</span>
-          <span *ngIf="!saving && !isEdit">guardar</span>
+        <button type="button" class="btn btn-primary btn-sm" (click)="guardar()" [disabled]="saving">
+          <app-text-btn *ngIf="!isEdit" [loading]="saving" [pogressbar]="true" textLoaded="Guardar"
+            textLoading="Guardando">
+          </app-text-btn>
+
+          <app-text-btn *ngIf="isEdit" [loading]="saving" [pogressbar]="true" textLoaded="Actualizar"
+            textLoading="Actualizando">
+          </app-text-btn>
         </button>
       </div>
 
