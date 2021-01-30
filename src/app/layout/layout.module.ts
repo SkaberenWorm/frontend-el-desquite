@@ -4,7 +4,7 @@ import { RouterModule } from '@angular/router';
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 
 import { SidenavModule } from '../../vendor/libs/sidenav/sidenav.module';
-import { Layout2Component } from './layout-2/layout-2.component';
+import { LayoutAdminComponent } from './layout-admin/layout-admin.component';
 import { LayoutBlankComponent } from './layout-blank/layout-blank.component';
 import { LayoutFooterComponent } from './layout-footer/layout-footer.component';
 import { LayoutNavbarComponent } from './layout-navbar/layout-navbar.component';
@@ -23,7 +23,7 @@ import { LayoutService } from './layout.service';
     SidenavModule
   ],
   declarations: [
-    Layout2Component,
+    LayoutAdminComponent,
     LayoutBlankComponent,
     LayoutNavbarComponent,
     LayoutFooterComponent,

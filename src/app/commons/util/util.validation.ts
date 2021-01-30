@@ -7,8 +7,6 @@ import { UtilFormating } from './util.formating';
 @Injectable()
 export class UtilValidation {
 
-
-
   constructor(public utilFormating: UtilFormating) { }
 
   static MatchPassword(AC: AbstractControl) {

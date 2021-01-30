@@ -21,6 +21,9 @@ export class PasswordIndexComponent implements OnInit {
   public formularioPassword: FormGroup;
   public loading = false;
 
+  public myColors = ['#DD2C00', '#FF6D00', '#FFD600', '#AEEA00', '#00C853'];
+
+
   constructor(
     private activatedRoute: ActivatedRoute,
     private appService: AppService,
@@ -74,7 +77,10 @@ export class PasswordIndexComponent implements OnInit {
 
   }
 
-  cambiar() {
+  finalizar() {
+    this.formularioPassword.controls.password.setValue(this.formularioPassword.controls.password.value.trim());
+    this.formularioPassword.controls.passwordConfirm.setValue(this.formularioPassword.controls.passwordConfirm.value.trim());
+
     Util.setFormForValidate(this.formularioPassword);
     if (this.formularioPassword.valid && !this.loading) {
       const clave = this.formularioPassword.controls.password.value.trim();

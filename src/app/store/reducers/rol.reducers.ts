@@ -1,4 +1,5 @@
 import { Action, createReducer, on } from '@ngrx/store';
+import { IPaginacion } from 'src/app/commons/interfaces/paginacion.interface';
 import { SearchPagination } from 'src/app/commons/interfaces/search.pagination';
 import { RolModel } from 'src/app/commons/models/rol.model';
 

@@ -48,6 +48,7 @@ const _authReducer = createReducer(initState,
     authenticate: true,
     user: usuario,
     logout: false,
+    loading: false,
   })),
   on(fromActions.logout, (): AuthState => initState),
 );

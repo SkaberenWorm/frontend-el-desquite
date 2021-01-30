@@ -1,29 +1,29 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "baseUrl": "./",
-    "outDir": "./dist/out-tsc",
-    "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
-    "experimentalDecorators": true,
-    "target": "es5",
-    "downlevelIteration": true,
-    "module": "es2020",
-    "importHelpers": true,
-    "allowJs": true,
-    "typeRoots": [
-      "node_modules/@types"
-    ],
-    "lib": [
-      "es2017",
-      "dom"
-    ]
-  },
-  "angularCompilerOptions": {
-    "strictInjectionParameters": true,
-    "preserveWhitespaces": true,
-    "allowSyntheticDefaultImports": true,
-    "enableIvy": false
-  }
+	"compileOnSave": false,
+	"compilerOptions": {
+		"baseUrl": "./",
+		"outDir": "./dist/out-tsc",
+		"sourceMap": true,
+		"declaration": false,
+		"moduleResolution": "node",
+		"experimentalDecorators": true,
+		"target": "es5",
+		"downlevelIteration": true,
+		"module": "es2020",
+		"importHelpers": true,
+		"allowJs": true,
+		"typeRoots": [
+			"node_modules/@types"
+		],
+		"lib": [
+			"es2017",
+			"dom"
+		]
+	},
+	"angularCompilerOptions": {
+		"strictInjectionParameters": true,
+		"preserveWhitespaces": true,
+		"allowSyntheticDefaultImports": true,
+		"enableIvy": false
+	}
 }

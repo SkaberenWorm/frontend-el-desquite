@@ -1,0 +1,40 @@
+<div class="authentication-wrapper authentication-2 ui-bg-cover ui-bg-overlay-container px-4"
+    style="background-image: url('assets/img/bg/16.jpg');">
+    <div class="ui-bg-overlay bg-dark opacity-25"></div>
+
+    <div class="authentication-inner py-5">
+        <div class="card">
+            <div class="py-4 px-5">
+                <div class="d-flex justify-content-center align-items-center pb-2 mb-2">
+                    <div class="w-100 position-relative text-center">
+                        <img src="assets/img/natura/logo-sm.png" style="max-height: 100px;" class="img-fluid">
+                    </div>
+                </div>
+                <h4 class="text-center text-muted font-weight-normal mb-4">Recuperar clave</h4>
+                <form [formGroup]="formularioRecovery" class="my-3">
+                    <div class="form-group">
+                        <label class="form-label">Email</label>
+                        <input formControlName="email" name="email" (keydown.enter)="recovery()" type="input"
+                            autocomplete="off"
+                            [ngClass]="{'is-invalid': formularioRecovery.controls['email'].touched && formularioRecovery.controls['email'].invalid}"
+                            class="form-control">
+                        <small class="invalid-feedback">
+                            <p
+                                *ngIf="formularioRecovery.controls['email'].errors?.required && formularioRecovery.controls['email'].touched">
+                                Campo obligatorio
+                            </p>
+                        </small>
+                    </div>
+                    <div class="d-flex justify-content-between align-items-center m-0 ">
+                        <button type="button" class="btn btn-natura mx-auto" [disabled]="loading" (click)="recovery()">
+                            <app-text-btn [loading]="loading" [pogressbar]="true" textLoaded="Recuperar clave"
+                                textLoading="Enviando correo">
+                            </app-text-btn>
+                        </button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>

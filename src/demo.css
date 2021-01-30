@@ -1448,3 +1448,7 @@ li.page-item.active, li.page-item.active>a {
 .badge.badge-muted, .btn.btn-muted {
   border: 1px solid gray;
 }
+
+.bn-link:focus {
+  box-shadow: none;
+}

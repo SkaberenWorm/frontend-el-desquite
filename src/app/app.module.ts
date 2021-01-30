@@ -9,7 +9,9 @@ import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { EffectsModule } from '@ngrx/effects';
 import { StoreModule } from '@ngrx/store';
 import { ConfirmationPopoverModule } from 'angular-confirmation-popover';
+import { QRCodeModule } from 'angularx-qrcode';
 import { BlockUIModule } from 'ng-block-ui';
+import { PasswordStrengthBarModule } from 'ng2-password-strength-bar';
 import { ToastNoAnimationModule, ToastrModule } from 'ngx-toastr';
 
 import { ThemeSettingsModule } from '../vendor/libs/theme-settings/theme-settings.module';
@@ -67,6 +69,8 @@ import { appEffect } from './store/effects';
     MatSortModule,
     MatInputModule,
     MatTooltipModule,
+    QRCodeModule,
+    PasswordStrengthBarModule,
   ],
 
   providers: [

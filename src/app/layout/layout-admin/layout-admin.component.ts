@@ -5,11 +5,11 @@ import { LayoutService } from '../layout.service';
 // import { InformacionBackendService } from 'src/app/commons/services/informacion-backend.service';
 
 @Component({
-  selector: 'app-layout-2',
-  templateUrl: './layout-2.component.html',
+  selector: 'app-layout-admin',
+  templateUrl: './layout-admin.component.html',
   styles: [':host { display: block; }', ':host ::ng-deep .layout-loading .sidenav-link { transition: none !important; }']
 })
-export class Layout2Component implements AfterViewInit, OnDestroy, OnInit {
+export class LayoutAdminComponent implements AfterViewInit, OnDestroy, OnInit {
 
   public initialized = false;
   public isProduction = true;

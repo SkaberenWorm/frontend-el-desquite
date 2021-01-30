@@ -1,4 +1,5 @@
 import { createAction, props } from '@ngrx/store';
+import { IPaginacion } from 'src/app/commons/interfaces/paginacion.interface';
 import { SearchPagination } from 'src/app/commons/interfaces/search.pagination';
 import { UsuarioModel } from 'src/app/commons/models/usuario.model';
 

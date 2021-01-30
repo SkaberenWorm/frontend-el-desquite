@@ -2,6 +2,7 @@ import { CommonModule } from '@angular/common';
 import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { NgbDropdownModule, NgbModule } from '@ng-bootstrap/ng-bootstrap';
+import { QRCodeModule } from 'angularx-qrcode';
 import { CommonsServiceModule } from 'src/app/commons/commons-service.module';
 import { SidenavModule } from 'src/vendor/libs/sidenav/sidenav.module';
 
@@ -23,6 +24,7 @@ import { AdministracionComponent } from './administracion/administracion.compone
     SidenavModule,
     NgbDropdownModule,
     CommonsServiceModule,
+    QRCodeModule,
   ]
 })
 export class AdminModule { }

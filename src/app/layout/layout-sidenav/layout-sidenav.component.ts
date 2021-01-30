@@ -1,5 +1,6 @@
 import { AfterViewInit, Component, HostBinding, Input, OnInit } from '@angular/core';
 import { Router } from '@angular/router';
+import { ToastrService } from 'ngx-toastr';
 import { AuthenticationService } from 'src/app/commons/services/authentication.service';
 
 import { AppService } from '../../app.service';
@@ -95,6 +96,7 @@ export class LayoutSidenavComponent implements AfterViewInit, OnInit {
     private appService: AppService,
     private layoutService: LayoutService,
     private _authenticationService: AuthenticationService,
+    private toasrtService: ToastrService,
   ) {
     // Set host classes
     this.hostClassVertical = this.orientation !== 'horizontal';
@@ -114,6 +116,7 @@ export class LayoutSidenavComponent implements AfterViewInit, OnInit {
     } else if (this._authenticationService.esRol('ROLE_VENDEDOR')) {
       ROUTES = this.menuVendedor;
     } else {
+      this.toasrtService.error('No tiene los permisos necesarios para ingresar al sistema', '', { disableTimeOut: true, closeButton: true, });
       this._authenticationService.logout();
     }
 

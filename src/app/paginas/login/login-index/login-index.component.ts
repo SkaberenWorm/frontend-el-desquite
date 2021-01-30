@@ -74,6 +74,10 @@ export class LoginIndexComponent implements OnInit, OnDestroy {
 
   }
 
+  recovery() {
+    this.router.navigate(['/recovery']);
+  }
+
   verificarTwoFactor() {
     this.utilValidation.setFormForValidate(this.formularioTwoFactor);
     if (this.formularioTwoFactor.valid && !this.loading) {
@@ -99,7 +103,7 @@ export class LoginIndexComponent implements OnInit, OnDestroy {
       const usuario = this.formularioLogin.controls.email.value;
       const password = this.formularioLogin.controls.password.value;
       this.loading = true;
-      this.loginService.login(usuario, password).subscribe(result => {
+      this.loginService.validateCredentialsUser(usuario, password).subscribe(result => {
         if (!result.error) {
           if (result.resultado == null) {
             this.toasrt.error('No se encontró el usuario');
@@ -117,7 +121,7 @@ export class LoginIndexComponent implements OnInit, OnDestroy {
           this.toasrt.error(result.mensaje);
         }
         this.loading = false;
-      });
+      }, (_error) => this.loading = false);
     }
   }
 }

@@ -1,5 +1,4 @@
 import { createAction, props } from '@ngrx/store';
-import { SearchPagination } from 'src/app/commons/interfaces/search.pagination';
 import { ProductoModel } from 'src/app/commons/models/producto.model';
 
 
@@ -22,7 +21,7 @@ export const guardarProducto = createAction(
 );
 export const guardarProductoSuccess = createAction(
     '[PRODUCTO MODEL] Guardar Producto success',
-    props<{ respuesta: ProductoModel, mensaje: string}>()
+    props<{ respuesta: ProductoModel, mensaje: string }>()
 );
 export const guardarProductoFail = createAction(
     '[PRODUCTO MODEL] Guardar Producto fail',

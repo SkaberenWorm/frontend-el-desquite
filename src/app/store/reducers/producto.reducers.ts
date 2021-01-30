@@ -1,8 +1,9 @@
 import { Action, createReducer, on } from '@ngrx/store';
+import { IPaginacion } from 'src/app/commons/interfaces/paginacion.interface';
 import { ProductoModel } from 'src/app/commons/models/producto.model';
 
 import * as fromActions from '../actions/producto.actions';
-  
+
 export interface ProductoState {
   loading: boolean;
   listadoProducto: IPaginacion<ProductoModel>;
@@ -26,7 +27,7 @@ const initState: ProductoState = {
 };
 
 const _productoReducer = createReducer(initState,
-  
+
 
   on(fromActions.buscarProducto, (state): ProductoState => ({
     ...state,

@@ -3,6 +3,7 @@ import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
 
+import { IPaginacion } from '../interfaces/paginacion.interface';
 import { ResultadoProc } from '../interfaces/resultado-proc.interface';
 import { SearchPagination } from '../interfaces/search.pagination';
 import { UsuarioModel } from '../models/usuario.model';
@@ -82,5 +83,10 @@ export class UsuarioService {
 
 	public createTokenForResetPassword(usuario: UsuarioModel): Observable<ResultadoProc<boolean>> {
 		return this.http.post<ResultadoProc<boolean>>(`${this.urlBase}/new-token-for-change-password`, usuario);
+	}
+
+
+	public recoveryPassword(usuario: string): Observable<ResultadoProc<boolean>> {
+		return this.http.get<ResultadoProc<boolean>>(`${this.urlBase}/free/recovery-password?email=${usuario}`);
 	}
 }

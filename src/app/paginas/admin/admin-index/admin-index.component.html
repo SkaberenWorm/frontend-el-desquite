@@ -5,6 +5,9 @@
             <!-- <h3>HELLO!</h3>
             <h4> <a routerLink="/admin/administracion/usuario">Usuarios</a> </h4>
             <h4> <a href="#" (click)="logout()">Logout</a> </h4> -->
+
+            <qrcode *ngIf="imageQr != null" [qrdata]="imageQr" [width]="250" [errorCorrectionLevel]="'M'"> </qrcode>
+
         </div>
     </div>
 

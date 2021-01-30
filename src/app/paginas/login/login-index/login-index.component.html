@@ -9,11 +9,11 @@
                 <!-- Logo -->
                 <div class="d-flex justify-content-center align-items-center pb-2 mb-2">
                     <div class="w-100 position-relative text-center">
-                        <img src="assets/img/natura/logo-sm.png" style="max-height: 150px;" class="img-fluid">
+                        <img src="assets/img/natura/logo-sm.png" style="max-height: 100px;" class="img-fluid">
                     </div>
                 </div>
+                <h4 class="text-center text-muted font-weight-normal mb-4">Ingresar</h4>
                 <!-- / Logo -->
-
                 <ng-container *ngIf="!visibleTwoFactorAuthentication; else elseTemplateLogin">
                     <!-- Form -->
                     <form [formGroup]="formularioLogin" class="my-3">
@@ -52,6 +52,10 @@
                                     textLoading="Ingresando">
                                 </app-text-btn>
                             </button>
+                        </div>
+                        <div class="d-flex justify-content-center align-items-center mt-3 ">
+                            <button type="button" class="btn bn-link text-primary" (click)="recovery()">¿Has olvidado tu
+                                contraseña?</button>
                         </div>
                     </form>
                     <!-- / Form -->

@@ -28,8 +28,9 @@ export class LayoutBlankComponent implements OnInit, OnDestroy {
   }
 
   ngOnInit() {
+    let valido = this.router.url.indexOf('cambiar-password') == -1 && this.router.url.indexOf('crear-password') == -1 && this.router.url.indexOf('recovery') == -1;
 
-    if (this.router.url.indexOf('cambiar-password') == -1) {
+    if (valido) {
       this._auth.isLogin().then(
         (loEsta) => {
           if (loEsta) {

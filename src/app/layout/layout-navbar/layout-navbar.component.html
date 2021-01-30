@@ -165,6 +165,15 @@
           </span>
         </a>
         <div ngbDropdownMenu [class.dropdown-menu-right]="!isRTL">
+          <!-- <div class="w-100 px-2 text-center">
+            <span>Loagueado como </span>
+            <p> <strong>{{nombreUsuario}}</strong></p>
+          </div> -->
+          <a [routerLink]="['/profile']" class="dropdown-item"><i class="ion ion-ios-person text-lightest"></i> &nbsp;
+            Mi perfil
+          </a>
+          <div class="dropdown-divider"></div>
+
           <!-- <a href="javascript:void(0)" class="dropdown-item"><i class="ion ion-ios-person text-lightest"></i> &nbsp; My
             profile</a>
           <a href="javascript:void(0)" class="dropdown-item"><i class="ion ion-ios-mail text-lightest"></i> &nbsp;
